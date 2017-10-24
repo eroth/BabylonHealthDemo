@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
+		569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* NetworkingService.swift */; };
+		569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */; };
+		569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591171F9F2BAF00C0AE99 /* Constants.swift */; };
 		56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F51F9DEF100021E021 /* AppDelegate.swift */; };
 		56A152F81F9DEF100021E021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* ViewController.swift */; };
 		56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152F91F9DEF100021E021 /* Main.storyboard */; };
@@ -26,6 +30,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
+		569591121F9F2AC100C0AE99 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Default.swift"; sourceTree = "<group>"; };
+		569591171F9F2BAF00C0AE99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		56A152F21F9DEF100021E021 /* BabylonHealthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonHealthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A152F51F9DEF100021E021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56A152F71F9DEF100021E021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +64,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5695910F1F9F29A200C0AE99 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				569591101F9F29B900C0AE99 /* URLConfig.swift */,
+				569591121F9F2AC100C0AE99 /* NetworkingService.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		569591141F9F2B5E00C0AE99 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		56A152E91F9DEF100021E021 = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +102,15 @@
 		56A152F41F9DEF100021E021 /* BabylonHealthDemo */ = {
 			isa = PBXGroup;
 			children = (
+				569591141F9F2B5E00C0AE99 /* Extensions */,
+				5695910F1F9F29A200C0AE99 /* Networking */,
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
 				56A152F71F9DEF100021E021 /* ViewController.swift */,
 				56A152F91F9DEF100021E021 /* Main.storyboard */,
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
 				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 				56A153011F9DEF100021E021 /* Info.plist */,
+				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 			);
 			path = BabylonHealthDemo;
 			sourceTree = "<group>";
@@ -200,7 +228,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				56A152F81F9DEF100021E021 /* ViewController.swift in Sources */,
+				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
+				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
+				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,
+				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
