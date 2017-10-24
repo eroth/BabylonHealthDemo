@@ -33,9 +33,7 @@ struct BabylonHealthAPI {
 			let jsonDecoder = JSONDecoder()
 			do {
 				let posts = try jsonDecoder.decode([Post].self, from: payload.data)
-				print("here")
-			} catch let e {
-				print("Decode error: \(e)")
+			} catch {
 				failureCompletion(APIError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
