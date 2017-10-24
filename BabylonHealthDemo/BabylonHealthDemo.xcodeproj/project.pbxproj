@@ -11,6 +11,8 @@
 		569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* NetworkingService.swift */; };
 		569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */; };
 		569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591171F9F2BAF00C0AE99 /* Constants.swift */; };
+		5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */; };
+		5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911D1F9F2EF500C0AE99 /* Post.swift */; };
 		56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F51F9DEF100021E021 /* AppDelegate.swift */; };
 		56A152F81F9DEF100021E021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* ViewController.swift */; };
 		56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152F91F9DEF100021E021 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 		569591121F9F2AC100C0AE99 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Default.swift"; sourceTree = "<group>"; };
 		569591171F9F2BAF00C0AE99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthAPI.swift; sourceTree = "<group>"; };
+		5695911D1F9F2EF500C0AE99 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		56A152F21F9DEF100021E021 /* BabylonHealthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonHealthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A152F51F9DEF100021E021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56A152F71F9DEF100021E021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +85,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		569591191F9F2DA200C0AE99 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		5695911C1F9F2ED700C0AE99 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5695911D1F9F2EF500C0AE99 /* Post.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		56A152E91F9DEF100021E021 = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +122,8 @@
 		56A152F41F9DEF100021E021 /* BabylonHealthDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5695911C1F9F2ED700C0AE99 /* Model */,
+				569591191F9F2DA200C0AE99 /* API */,
 				569591141F9F2B5E00C0AE99 /* Extensions */,
 				5695910F1F9F29A200C0AE99 /* Networking */,
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
@@ -227,8 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */,
 				56A152F81F9DEF100021E021 /* ViewController.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
+				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
 				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,

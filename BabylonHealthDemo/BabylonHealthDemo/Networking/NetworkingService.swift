@@ -45,13 +45,12 @@ protocol NetworkingService {
 struct VanillaNetworking : NetworkingService {
 	@discardableResult
 	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, errorCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
-		print(route)
 		guard let url = URLConfig(path: route, queryComponents: queryParams).url else {
 			errorCompletion(CustomError.urlError)
 			
 			return nil
 		}
-		print(url)
+
 		let request = URLRequest.defaultRequest(url: url)
 		
 		let dataTask = URLSession.shared.dataTask(with: request) { (data, URLResponse, error) in
@@ -69,7 +68,6 @@ struct VanillaNetworking : NetworkingService {
 				return
 			}
 			
-			print(payload.description)
 			successCompletion(payload)
 		}
 		
