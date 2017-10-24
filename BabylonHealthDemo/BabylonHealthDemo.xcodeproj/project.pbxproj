@@ -14,11 +14,12 @@
 		5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */; };
 		5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911D1F9F2EF500C0AE99 /* Post.swift */; };
 		56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F51F9DEF100021E021 /* AppDelegate.swift */; };
-		56A152F81F9DEF100021E021 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* ViewController.swift */; };
+		56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* PostsViewController.swift */; };
 		56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152F91F9DEF100021E021 /* Main.storyboard */; };
 		56A152FD1F9DEF100021E021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56A152FC1F9DEF100021E021 /* Assets.xcassets */; };
 		56A153001F9DEF100021E021 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */; };
 		56A1530B1F9DEF100021E021 /* BabylonHealthDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */; };
+		56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +41,7 @@
 		5695911D1F9F2EF500C0AE99 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		56A152F21F9DEF100021E021 /* BabylonHealthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonHealthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A152F51F9DEF100021E021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		56A152F71F9DEF100021E021 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		56A152F71F9DEF100021E021 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		56A152FA1F9DEF100021E021 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		56A152FC1F9DEF100021E021 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56A152FF1F9DEF100021E021 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		56A153061F9DEF100021E021 /* BabylonHealthDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabylonHealthDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthDemoTests.swift; sourceTree = "<group>"; };
 		56A1530C1F9DEF100021E021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +124,12 @@
 		56A152F41F9DEF100021E021 /* BabylonHealthDemo */ = {
 			isa = PBXGroup;
 			children = (
+				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
+				56E65A031F9FEE1600A43A3D /* Posts View */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
 				569591191F9F2DA200C0AE99 /* API */,
 				569591141F9F2B5E00C0AE99 /* Extensions */,
 				5695910F1F9F29A200C0AE99 /* Networking */,
-				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
-				56A152F71F9DEF100021E021 /* ViewController.swift */,
 				56A152F91F9DEF100021E021 /* Main.storyboard */,
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
 				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
@@ -144,6 +146,15 @@
 				56A1530C1F9DEF100021E021 /* Info.plist */,
 			);
 			path = BabylonHealthDemoTests;
+			sourceTree = "<group>";
+		};
+		56E65A031F9FEE1600A43A3D /* Posts View */ = {
+			isa = PBXGroup;
+			children = (
+				56A152F71F9DEF100021E021 /* PostsViewController.swift */,
+				56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */,
+			);
+			path = "Posts View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,8 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */,
 				5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */,
-				56A152F81F9DEF100021E021 /* ViewController.swift in Sources */,
+				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
