@@ -8,6 +8,17 @@
 
 import Foundation
 
+enum APIError: LocalizedError {
+	case jsonDecodingError
+	
+	var errorDescription: String? {
+		switch self {
+		case .jsonDecodingError:
+			return "There was an error decoding the response"
+		}
+	}
+}
+
 struct BabylonHealthAPI {
 	private let networkingService: NetworkingService
 	
@@ -19,6 +30,14 @@ struct BabylonHealthAPI {
 	func getPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.POSTS_ROUTE, queryParams: nil, successCompletion: { payload in
 			print(payload.description)
+			let jsonDecoder = JSONDecoder()
+			do {
+				let posts = try jsonDecoder.decode([Post].self, from: payload.data)
+				print("here")
+			} catch let e {
+				print("Decode error: \(e)")
+				failureCompletion(APIError.jsonDecodingError)
+			}
 		}, errorCompletion: { error in
 			
 		})
