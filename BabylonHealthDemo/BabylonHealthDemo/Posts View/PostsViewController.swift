@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PostsViewController.swift
 //  BabylonHealthDemo
 //
 //  Created by Evan Roth on 10/23/17.
@@ -8,11 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class PostsViewController: UIViewController {
+	@IBOutlet var postsTableViewObject: PostsTableViewObject!
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+		let babylonHealthAPI = BabylonHealthAPI()
+		babylonHealthAPI.getPosts(successCompletion: { posts in
+			self.postsTableViewObject.postsDataSource = posts
+		}, failureCompletion: { error in
+			
+		})
 	}
 
 	override func didReceiveMemoryWarning() {
