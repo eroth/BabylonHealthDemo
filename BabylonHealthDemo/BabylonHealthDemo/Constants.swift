@@ -18,5 +18,6 @@ struct Constants {
 	
 	struct MainPostsView {
 		static let MAIN_POSTS_TABLEVIEWCELL_HEIGHT = CGFloat(130)
+		static let POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER = "PostsTableViewCellReuseIdentifier"
 	}
 }

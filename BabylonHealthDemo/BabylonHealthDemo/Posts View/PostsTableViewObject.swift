@@ -20,7 +20,8 @@ class PostsTableViewObject: NSObject {
 	
 	@IBOutlet weak var postsTableView: UITableView! {
 		didSet {
-			postsTableView.register(UINib.init(nibName: "PostsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostsTableViewCellReuseIdentifier")
+			let postTableViewCellClassName = String(describing: PostsTableViewCell.self)
+			postsTableView.register(UINib.init(nibName: postTableViewCellClassName, bundle: nil), forCellReuseIdentifier: Constants.MainPostsView.POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER)
 		}
 	}
 	
@@ -33,7 +34,7 @@ extension PostsTableViewObject: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let postsCell = tableView.dequeueReusableCell(withIdentifier: "PostsTableViewCellReuseIdentifier", for: indexPath) as! PostsTableViewCell
+		let postsCell = tableView.dequeueReusableCell(withIdentifier: Constants.MainPostsView.POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER, for: indexPath) as! PostsTableViewCell
 		let post = postsDataSource[indexPath.row]
 		postsCell.postTitleLabel.text = post.title
 		postsCell.postBodyLabel.text = post.body
