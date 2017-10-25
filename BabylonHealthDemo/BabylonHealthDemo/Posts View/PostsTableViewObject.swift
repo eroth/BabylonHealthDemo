@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+typealias DidSelectCellClosure = (_ postData: Post) -> Void
+
 class PostsTableViewObject: NSObject {
 	var postsDataSource: [Post] = [] {
 		didSet {
@@ -18,10 +20,11 @@ class PostsTableViewObject: NSObject {
 	
 	@IBOutlet weak var postsTableView: UITableView! {
 		didSet {
-			postsTableView.allowsSelection = false
 			postsTableView.register(UINib.init(nibName: "PostsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostsTableViewCellReuseIdentifier")
 		}
 	}
+	
+	var didSelectCellClosure: DidSelectCellClosure?
 }
 
 extension PostsTableViewObject: UITableViewDataSource {
@@ -42,5 +45,12 @@ extension PostsTableViewObject: UITableViewDataSource {
 extension PostsTableViewObject: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return Constants.MainPostsView.MAIN_POSTS_TABLEVIEWCELL_HEIGHT
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let post = postsDataSource[indexPath.row]
+		if let returnClosure = didSelectCellClosure {
+			returnClosure(post)
+		}
 	}
 }

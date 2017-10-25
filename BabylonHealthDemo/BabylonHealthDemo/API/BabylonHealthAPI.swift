@@ -48,4 +48,13 @@ struct BabylonHealthAPI {
 			
 		})
 	}
+	
+	@discardableResult
+	func getPostDetails(successCompletion: @escaping ([User]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
+		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
+			
+		}, errorCompletion: { error in
+			
+		})
+	}
 }

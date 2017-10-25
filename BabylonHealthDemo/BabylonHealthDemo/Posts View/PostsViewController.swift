@@ -21,6 +21,10 @@ class PostsViewController: UIViewController {
 		}, failureCompletion: { error in
 			
 		})
+		
+		postsTableViewObject.didSelectCellClosure = { post in
+			
+		}
 	}
 
 	override func didReceiveMemoryWarning() {

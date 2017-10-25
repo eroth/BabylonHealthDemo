@@ -13,6 +13,7 @@ struct Constants {
 	struct Networking {
 		static let API_HOST = "jsonplaceholder.typicode.com"
 		static let POSTS_ROUTE = "/posts"
+		static let USERS_ROUTE = "/users"
 	}
 	
 	struct MainPostsView {

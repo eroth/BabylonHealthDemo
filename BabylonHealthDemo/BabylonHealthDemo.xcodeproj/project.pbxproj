@@ -22,6 +22,8 @@
 		56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */; };
 		56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */; };
 		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
+		56B41B551FA0C49B004358F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B541FA0C49B004358F1 /* User.swift */; };
+		56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B561FA0C4AC004358F1 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewObject.swift; sourceTree = "<group>"; };
 		56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
+		56B41B541FA0C49B004358F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		56B41B561FA0C4AC004358F1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 			isa = PBXGroup;
 			children = (
 				5695911D1F9F2EF500C0AE99 /* Post.swift */,
+				56B41B541FA0C49B004358F1 /* User.swift */,
+				56B41B561FA0C4AC004358F1 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -274,9 +280,11 @@
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
+				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,
 				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,
 				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,
 				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
+				56B41B551FA0C49B004358F1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
