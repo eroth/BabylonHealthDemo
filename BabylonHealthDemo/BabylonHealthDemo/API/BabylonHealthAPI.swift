@@ -29,7 +29,7 @@ struct BabylonHealthAPI {
 	@discardableResult
 	func getPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.POSTS_ROUTE, queryParams: nil, successCompletion: { payload in
-			print(payload.description)
+//			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
 				// API returning malformed 101st array element on occasion
@@ -52,9 +52,16 @@ struct BabylonHealthAPI {
 	@discardableResult
 	func getPostDetails(successCompletion: @escaping ([User]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
-			
+			print(payload.description)
+			let jsonDecoder = JSONDecoder()
+			do {
+				let users = try jsonDecoder.decode([User].self, from: payload.data)
+				print("here")
+			} catch let e {
+				print(e)
+			}
 		}, errorCompletion: { error in
-			
+			print(error)
 		})
 	}
 }
