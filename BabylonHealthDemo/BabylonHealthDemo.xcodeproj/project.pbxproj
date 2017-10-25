@@ -20,6 +20,8 @@
 		56A153001F9DEF100021E021 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */; };
 		56A1530B1F9DEF100021E021 /* BabylonHealthDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */; };
 		56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */; };
+		56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */; };
+		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthDemoTests.swift; sourceTree = "<group>"; };
 		56A1530C1F9DEF100021E021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewObject.swift; sourceTree = "<group>"; };
+		56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +157,8 @@
 			children = (
 				56A152F71F9DEF100021E021 /* PostsViewController.swift */,
 				56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */,
+				56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */,
+				56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */,
 			);
 			path = "Posts View";
 			sourceTree = "<group>";
@@ -243,6 +249,7 @@
 				56A153001F9DEF100021E021 /* LaunchScreen.storyboard in Resources */,
 				56A152FD1F9DEF100021E021 /* Assets.xcassets in Resources */,
 				56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */,
+				56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +274,7 @@
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
+				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,
 				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,
 				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
 			);

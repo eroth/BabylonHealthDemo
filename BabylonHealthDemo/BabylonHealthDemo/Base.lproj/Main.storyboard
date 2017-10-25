@@ -18,21 +18,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dBh-xO-2wW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dBh-xO-2wW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="a0Y-J5-gy4" id="0RD-Iy-dNy"/>
+                                    <outlet property="delegate" destination="a0Y-J5-gy4" id="2Pj-rV-ORA"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dBh-xO-2wW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QCu-13-fBs"/>
+                            <constraint firstItem="dBh-xO-2wW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="aQr-xk-BAy"/>
+                            <constraint firstItem="dBh-xO-2wW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="bri-eJ-ZMJ"/>
+                            <constraint firstItem="dBh-xO-2wW" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fJf-Ir-R01"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="MCp-ef-4mz"/>
+                    <connections>
+                        <outlet property="postsTableViewObject" destination="a0Y-J5-gy4" id="nTR-JL-2Jt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="a0Y-J5-gy4" customClass="PostsTableViewObject">
+                <customObject id="a0Y-J5-gy4" customClass="PostsTableViewObject" customModule="BabylonHealthDemo" customModuleProvider="target">
                     <connections>
-                        <outlet property="postsTableView" destination="dBh-xO-2wW" id="x4c-Nl-edk"/>
+                        <outlet property="postsTableView" destination="dBh-xO-2wW" id="7bz-dD-5Ac"/>
                     </connections>
                 </customObject>
             </objects>

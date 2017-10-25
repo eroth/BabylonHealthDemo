@@ -32,8 +32,16 @@ struct BabylonHealthAPI {
 			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
+				// API returning malformed 101st array element on occasion
+//				let errorArr = try JSONSerialization.jsonObject(with: payload.data, options:[]) as! Array<[String:Any]>
+//				let newArr = Array(errorArr[0..<100])
+//				let newData = try JSONSerialization.data(withJSONObject: newArr, options:[])
 				let posts = try jsonDecoder.decode([Post].self, from: payload.data)
-			} catch {
+				DispatchQueue.main.async {
+					successCompletion(posts)
+				}
+			} catch let e {
+				print(e)
 				failureCompletion(APIError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
