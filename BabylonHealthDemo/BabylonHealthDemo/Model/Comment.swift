@@ -7,3 +7,19 @@
 //
 
 import Foundation
+
+struct Comment: Decodable {
+	enum CodingKeys: String, CodingKey {
+		case postId
+		case commentId = "id"
+		case name
+		case email
+		case body
+	}
+	
+	let postId: Int
+	let commentId: Int
+	let name: String
+	let email: String
+	let body: String
+}

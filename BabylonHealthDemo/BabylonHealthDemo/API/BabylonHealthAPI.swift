@@ -51,11 +51,23 @@ struct BabylonHealthAPI {
 	
 	@discardableResult
 	func getPostDetails(successCompletion: @escaping ([User]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
-		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
+//		networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
+//			print(payload.description)
+//			let jsonDecoder = JSONDecoder()
+//			do {
+//				let users = try jsonDecoder.decode([User].self, from: payload.data)
+//				print("here")
+//			} catch let e {
+//				print(e)
+//			}
+//		}, errorCompletion: { error in
+//			print(error)
+//		})
+		networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: nil, successCompletion: { payload in
 			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
-				let users = try jsonDecoder.decode([User].self, from: payload.data)
+				let comments = try jsonDecoder.decode([Comment].self, from: payload.data)
 				print("here")
 			} catch let e {
 				print(e)
@@ -63,5 +75,7 @@ struct BabylonHealthAPI {
 		}, errorCompletion: { error in
 			print(error)
 		})
+		
+		return nil
 	}
 }
