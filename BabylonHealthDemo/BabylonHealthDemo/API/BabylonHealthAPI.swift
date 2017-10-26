@@ -8,6 +8,12 @@
 
 import Foundation
 
+typealias PostsCompletionBlock = (_ post: [Post]) -> Void
+typealias FailureCompletionBlock = (_ error: Error) -> Void
+typealias PostDetailsCompletionBlock = (_ user: User, _ comments: [Comment]) -> Void
+typealias UserInfoCompletionBlock = (_ user: User) -> Void
+typealias PostCommentsCompletionBlock = (_ postComments: [Comment]) -> Void
+
 enum APIError: LocalizedError {
 	case jsonDecodingError
 	
@@ -27,7 +33,7 @@ struct BabylonHealthAPI {
 	}
 	
 	@discardableResult
-	func getPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
+	func getPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.POSTS_ROUTE, queryParams: nil, successCompletion: { payload in
 //			print(payload.description)
 			let jsonDecoder = JSONDecoder()
@@ -50,20 +56,39 @@ struct BabylonHealthAPI {
 	}
 	
 	@discardableResult
-	func getPostDetails(successCompletion: @escaping ([User]) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
-//		networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
-//			print(payload.description)
-//			let jsonDecoder = JSONDecoder()
-//			do {
-//				let users = try jsonDecoder.decode([User].self, from: payload.data)
-//				print("here")
-//			} catch let e {
-//				print(e)
-//			}
-//		}, errorCompletion: { error in
-//			print(error)
-//		})
-		networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: nil, successCompletion: { payload in
+	func getPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
+		getPostUser(userId: userId, successCompletion: { userInfo in
+			
+		}, failureCompletion: { error in
+			
+		})
+		
+		getPostComments(postId: postId, successCompletion: { comments in
+			
+		}, failureCompletion: { error in
+			
+		})
+		
+		return nil
+	}
+	
+	private func getPostUser(userId: Int, successCompletion: @escaping UserInfoCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
+		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
+			print(payload.description)
+			let jsonDecoder = JSONDecoder()
+			do {
+				let user = try jsonDecoder.decode([User].self, from: payload.data).first
+				print("here")
+			} catch let e {
+				print(e)
+			}
+		}, errorCompletion: { error in
+			print(error)
+		})
+	}
+	
+	private func getPostComments(postId: Int, successCompletion: @escaping PostCommentsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
+		return networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: nil, successCompletion: { payload in
 			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
@@ -75,7 +100,5 @@ struct BabylonHealthAPI {
 		}, errorCompletion: { error in
 			print(error)
 		})
-		
-		return nil
 	}
 }

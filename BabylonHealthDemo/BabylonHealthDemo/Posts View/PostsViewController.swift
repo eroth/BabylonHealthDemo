@@ -23,7 +23,7 @@ class PostsViewController: UIViewController {
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
-			babylonHealthAPI.getPostDetails(successCompletion: { users in
+			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
 				
 			}, failureCompletion: { error in
 				
