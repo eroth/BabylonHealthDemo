@@ -36,6 +36,12 @@ class PostsViewController: UIViewController {
 			})
 		}
 	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let postDetailsVC = segue.destination as? PostDetailsViewController {
+			postDetailsVC.delegate = self
+		}
+	}
 }
 
 extension PostsViewController: PostDetailsViewDelegate {
