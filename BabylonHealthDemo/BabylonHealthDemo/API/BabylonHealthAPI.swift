@@ -35,7 +35,6 @@ struct BabylonHealthAPI {
 	@discardableResult
 	func getPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.POSTS_ROUTE, queryParams: nil, successCompletion: { payload in
-//			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
 				// API returning malformed 101st array element on occasion
@@ -56,49 +55,89 @@ struct BabylonHealthAPI {
 	}
 	
 	@discardableResult
-	func getPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
-		getPostUser(userId: userId, successCompletion: { userInfo in
-			
-		}, failureCompletion: { error in
-			
+	func getPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> [URLSessionDataTask] {
+		var dataTasks: [URLSessionDataTask] = []
+		var user: User?
+		var comments: [Comment]?
+		var error: Error? // Just using one error if there is one
+		let dispatchGroup = DispatchGroup()
+		
+		dispatchGroup.enter()
+		if let postUserTask = getPostUser(userId: userId, successCompletion: { userInfo in
+			user = userInfo
+			dispatchGroup.leave()
+		}, failureCompletion: { getUserError in
+			error = getUserError
+			dispatchGroup.leave()
+		}) {
+			dataTasks.append(postUserTask)
+		}
+		
+		dispatchGroup.enter()
+		if let postCommentsTask = getPostComments(postId: postId, successCompletion: { postComments in
+			comments = postComments
+			dispatchGroup.leave()
+		}, failureCompletion: { getCommentsError in
+			error = getCommentsError
+			dispatchGroup.leave()
+		}) {
+			dataTasks.append(postCommentsTask)
+		}
+		
+		dispatchGroup.notify(queue: .main, execute: {
+			guard let user = user else {
+				failureCompletion(error!)
+				
+				return
+			}
+			guard let comments = comments else {
+				failureCompletion(error!)
+				
+				return
+			}
+			successCompletion(user, comments)
 		})
 		
-		getPostComments(postId: postId, successCompletion: { comments in
-			
-		}, failureCompletion: { error in
-			
-		})
-		
-		return nil
+		return dataTasks
 	}
 	
 	private func getPostUser(userId: Int, successCompletion: @escaping UserInfoCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
-		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: nil, successCompletion: { payload in
+		let userIdString = String(describing: userId)
+		let params: [String: String] = ["id": userIdString]
+		
+		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: params, successCompletion: { payload in
 			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
-				let user = try jsonDecoder.decode([User].self, from: payload.data).first
-				print("here")
-			} catch let e {
-				print(e)
+				let user = try jsonDecoder.decode([User].self, from: payload.data).first!
+				successCompletion(user)
+			} catch let error {
+				print(error)
+				failureCompletion(APIError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
+			failureCompletion(error)
 			print(error)
 		})
 	}
 	
 	private func getPostComments(postId: Int, successCompletion: @escaping PostCommentsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
-		return networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: nil, successCompletion: { payload in
+		let postIdString = String(describing: postId)
+		let params: [String: String] = ["postId": postIdString]
+		
+		return networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: params, successCompletion: { payload in
 			print(payload.description)
 			let jsonDecoder = JSONDecoder()
 			do {
 				let comments = try jsonDecoder.decode([Comment].self, from: payload.data)
-				print("here")
-			} catch let e {
-				print(e)
+				successCompletion(comments)
+			} catch let error {
+				print(error)
+				failureCompletion(APIError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
 			print(error)
+			failureCompletion(error)
 		})
 	}
 }
