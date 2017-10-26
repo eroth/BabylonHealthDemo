@@ -9,11 +9,14 @@
 import UIKit
 
 class PostDetailsViewController: UIViewController {
-
+	@IBOutlet weak var authorLabel: UILabel!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+		
+		authorLabel.text = "sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd"
     }
 
     override func didReceiveMemoryWarning() {
