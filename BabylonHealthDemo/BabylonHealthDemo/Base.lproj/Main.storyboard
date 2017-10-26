@@ -65,7 +65,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uy6-FF-EnD" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgv-8P-zZn">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgv-8P-zZn">
                                                 <rect key="frame" x="8" y="30" width="359" height="37"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="31"/>
                                                 <nil key="textColor"/>
@@ -118,7 +118,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="UeC-RD-Oux"/>
                     <connections>
-                        <outlet property="authorLabel" destination="8GI-no-Egl" id="06n-C1-h0O"/>
+                        <outlet property="authorLabel" destination="rgv-8P-zZn" id="F0j-W1-cMK"/>
+                        <outlet property="bodyLabel" destination="8GI-no-Egl" id="mGu-TG-7l2"/>
+                        <outlet property="numCommentsLabel" destination="on7-qZ-4uT" id="GRU-M5-Ibq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zCp-6M-zKT" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,31 +8,37 @@
 
 import UIKit
 
+protocol PostDetailsViewDelegate: class {
+	func postAuthorData() -> PostDetailsAuthorDisplayable?
+	func postData() -> PostDetailsContentDisplayable?
+	func numPostComments() -> Int
+}
+
 class PostDetailsViewController: UIViewController {
 	@IBOutlet weak var authorLabel: UILabel!
+	@IBOutlet weak var bodyLabel: UILabel!
+	@IBOutlet weak var numCommentsLabel: UILabel!
+	weak var delegate: PostDetailsViewDelegate?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
 		
-		authorLabel.text = "sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd sadasd as das da sd asd as da sd asd asd  asd as da ds as da sd asd a sd asd asd a sda sdasdasdasdasd asda sd asdasdasda sdasd"
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+		populateUI()
+		
+	}
+	
+	func populateUI() -> Void {
+		if let authorData = delegate?.postAuthorData() {
+			authorLabel.text = authorData.name
+		}
+		if let content = delegate?.postData() {
+			bodyLabel.text = content.body
+		}
+		
+		if let numComments = delegate?.numPostComments() {
+			numCommentsLabel.text = "\(numComments) comments"
+		}
+	}
 }

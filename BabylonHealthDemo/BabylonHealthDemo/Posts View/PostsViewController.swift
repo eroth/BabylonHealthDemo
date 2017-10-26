@@ -10,6 +10,9 @@ import UIKit
 
 class PostsViewController: UIViewController {
 	@IBOutlet var postsTableViewObject: PostsTableViewObject!
+	var selectedPostUser: PostDetailsAuthorDisplayable?
+	var selectedPost: PostDetailsContentDisplayable?
+	var selectedPostComments: [Comment]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,17 +27,39 @@ class PostsViewController: UIViewController {
 		
 		postsTableViewObject.didSelectCellClosure = { post in
 			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-				self.performSegue(withIdentifier: "ShowPostDetailsSegueIdentifier", sender: self)
+				self.selectedPost = post
+				self.selectedPostUser = user
+				self.selectedPostComments = comments
+				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
 			}, failureCompletion: { error in
 				
 			})
 		}
 	}
-
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		
-	}
-
-
 }
 
+extension PostsViewController: PostDetailsViewDelegate {
+	func postAuthorData() -> PostDetailsAuthorDisplayable? {
+		guard let authorData = self.selectedPostUser else {
+			return nil
+		}
+		
+		return authorData
+	}
+	
+	func postData() -> PostDetailsContentDisplayable? {
+		guard let selectedPostData = self.selectedPost else {
+			return nil
+		}
+		
+		return selectedPostData
+	}
+	
+	func numPostComments() -> Int {
+		guard let numPostComments = selectedPostComments?.count else {
+			return 0
+		}
+		
+		return numPostComments
+	}
+}
