@@ -13,6 +13,7 @@
 		569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591171F9F2BAF00C0AE99 /* Constants.swift */; };
 		5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */; };
 		5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911D1F9F2EF500C0AE99 /* Post.swift */; };
+		56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */; };
 		56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F51F9DEF100021E021 /* AppDelegate.swift */; };
 		56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* PostsViewController.swift */; };
 		56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152F91F9DEF100021E021 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		569591171F9F2BAF00C0AE99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthAPI.swift; sourceTree = "<group>"; };
 		5695911D1F9F2EF500C0AE99 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		56A152F21F9DEF100021E021 /* BabylonHealthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonHealthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A152F51F9DEF100021E021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56A152F71F9DEF100021E021 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		56A02C461FA1CEE20040D3FC /* Post Details View */ = {
+			isa = PBXGroup;
+			children = (
+				56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */,
+			);
+			path = "Post Details View";
+			sourceTree = "<group>";
+		};
 		56A152E91F9DEF100021E021 = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +146,7 @@
 			children = (
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
 				56E65A031F9FEE1600A43A3D /* Posts View */,
+				56A02C461FA1CEE20040D3FC /* Post Details View */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
 				569591191F9F2DA200C0AE99 /* API */,
 				569591141F9F2B5E00C0AE99 /* Extensions */,
@@ -276,6 +287,7 @@
 				56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */,
 				5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */,
 				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
+				56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,

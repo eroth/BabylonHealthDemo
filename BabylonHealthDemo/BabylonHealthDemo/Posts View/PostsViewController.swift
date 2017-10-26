@@ -24,16 +24,15 @@ class PostsViewController: UIViewController {
 		
 		postsTableViewObject.didSelectCellClosure = { post in
 			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-				
+				self.performSegue(withIdentifier: "ShowPostDetailsSegueIdentifier", sender: self)
 			}, failureCompletion: { error in
 				
 			})
 		}
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
 	}
 
 

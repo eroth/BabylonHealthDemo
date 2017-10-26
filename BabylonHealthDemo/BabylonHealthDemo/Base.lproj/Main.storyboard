@@ -39,6 +39,7 @@
                     <navigationItem key="navigationItem" id="MCp-ef-4mz"/>
                     <connections>
                         <outlet property="postsTableViewObject" destination="a0Y-J5-gy4" id="nTR-JL-2Jt"/>
+                        <segue destination="j3m-i1-nZC" kind="show" identifier="ShowPostDetailsSegueIdentifier" id="yF4-24-z5X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -48,7 +49,23 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="604" y="136.28185907046478"/>
+            <point key="canvasLocation" x="657" y="135"/>
+        </scene>
+        <!--Post Details View Controller-->
+        <scene sceneID="KMz-sB-Xae">
+            <objects>
+                <viewController id="j3m-i1-nZC" customClass="PostDetailsViewController" customModule="BabylonHealthDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FQu-YE-hu8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="sdO-ee-gzX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UeC-RD-Oux"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zCp-6M-zKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1572" y="136"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uyZ-ao-cyO">
