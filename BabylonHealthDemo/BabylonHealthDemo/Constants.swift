@@ -13,9 +13,13 @@ struct Constants {
 	struct Networking {
 		static let API_HOST = "jsonplaceholder.typicode.com"
 		static let POSTS_ROUTE = "/posts"
+		static let USERS_ROUTE = "/users"
+		static let COMMENTS_ROUTE = "/comments"
 	}
 	
 	struct MainPostsView {
 		static let MAIN_POSTS_TABLEVIEWCELL_HEIGHT = CGFloat(130)
+		static let POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER = "PostsTableViewCellReuseIdentifier"
+		static let PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER = "ShowPostDetailsSegueIdentifier"
 	}
 }

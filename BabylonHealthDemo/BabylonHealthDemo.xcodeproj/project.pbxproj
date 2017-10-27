@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */; };
+		565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */; };
 		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
 		569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* NetworkingService.swift */; };
 		569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */; };
 		569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591171F9F2BAF00C0AE99 /* Constants.swift */; };
 		5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */; };
 		5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911D1F9F2EF500C0AE99 /* Post.swift */; };
+		56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */; };
 		56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F51F9DEF100021E021 /* AppDelegate.swift */; };
 		56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A152F71F9DEF100021E021 /* PostsViewController.swift */; };
 		56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152F91F9DEF100021E021 /* Main.storyboard */; };
@@ -22,6 +25,8 @@
 		56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */; };
 		56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */; };
 		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
+		56B41B551FA0C49B004358F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B541FA0C49B004358F1 /* User.swift */; };
+		56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B561FA0C4AC004358F1 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsContentDisplayable.swift; sourceTree = "<group>"; };
+		565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsAuthorDisplayable.swift; sourceTree = "<group>"; };
 		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
 		569591121F9F2AC100C0AE99 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Default.swift"; sourceTree = "<group>"; };
 		569591171F9F2BAF00C0AE99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthAPI.swift; sourceTree = "<group>"; };
 		5695911D1F9F2EF500C0AE99 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		56A152F21F9DEF100021E021 /* BabylonHealthDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabylonHealthDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A152F51F9DEF100021E021 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56A152F71F9DEF100021E021 /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -54,6 +62,8 @@
 		56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewObject.swift; sourceTree = "<group>"; };
 		56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
+		56B41B541FA0C49B004358F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		56B41B561FA0C4AC004358F1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		565B19E11FA2255400D042E5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */,
+				565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		5695910F1F9F29A200C0AE99 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,8 +122,18 @@
 			isa = PBXGroup;
 			children = (
 				5695911D1F9F2EF500C0AE99 /* Post.swift */,
+				56B41B541FA0C49B004358F1 /* User.swift */,
+				56B41B561FA0C4AC004358F1 /* Comment.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		56A02C461FA1CEE20040D3FC /* Post Details View */ = {
+			isa = PBXGroup;
+			children = (
+				56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */,
+			);
+			path = "Post Details View";
 			sourceTree = "<group>";
 		};
 		56A152E91F9DEF100021E021 = {
@@ -130,9 +159,11 @@
 			children = (
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
 				56E65A031F9FEE1600A43A3D /* Posts View */,
+				56A02C461FA1CEE20040D3FC /* Post Details View */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
 				569591191F9F2DA200C0AE99 /* API */,
 				569591141F9F2B5E00C0AE99 /* Extensions */,
+				565B19E11FA2255400D042E5 /* Protocols */,
 				5695910F1F9F29A200C0AE99 /* Networking */,
 				56A152F91F9DEF100021E021 /* Main.storyboard */,
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
@@ -269,14 +300,19 @@
 			files = (
 				56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */,
 				5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */,
+				565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */,
 				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
+				56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
+				565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
+				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,
 				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,
 				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,
 				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
+				56B41B551FA0C49B004358F1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

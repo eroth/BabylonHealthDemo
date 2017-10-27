@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+typealias DidSelectCellClosure = (_ postData: Post) -> Void
+
 class PostsTableViewObject: NSObject {
 	var postsDataSource: [Post] = [] {
 		didSet {
@@ -18,10 +20,12 @@ class PostsTableViewObject: NSObject {
 	
 	@IBOutlet weak var postsTableView: UITableView! {
 		didSet {
-			postsTableView.allowsSelection = false
-			postsTableView.register(UINib.init(nibName: "PostsTableViewCell", bundle: nil), forCellReuseIdentifier: "PostsTableViewCellReuseIdentifier")
+			let postTableViewCellClassName = String(describing: PostsTableViewCell.self)
+			postsTableView.register(UINib.init(nibName: postTableViewCellClassName, bundle: nil), forCellReuseIdentifier: Constants.MainPostsView.POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER)
 		}
 	}
+	
+	var didSelectCellClosure: DidSelectCellClosure?
 }
 
 extension PostsTableViewObject: UITableViewDataSource {
@@ -30,7 +34,7 @@ extension PostsTableViewObject: UITableViewDataSource {
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let postsCell = tableView.dequeueReusableCell(withIdentifier: "PostsTableViewCellReuseIdentifier", for: indexPath) as! PostsTableViewCell
+		let postsCell = tableView.dequeueReusableCell(withIdentifier: Constants.MainPostsView.POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER, for: indexPath) as! PostsTableViewCell
 		let post = postsDataSource[indexPath.row]
 		postsCell.postTitleLabel.text = post.title
 		postsCell.postBodyLabel.text = post.body
@@ -42,5 +46,12 @@ extension PostsTableViewObject: UITableViewDataSource {
 extension PostsTableViewObject: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return Constants.MainPostsView.MAIN_POSTS_TABLEVIEWCELL_HEIGHT
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let post = postsDataSource[indexPath.row]
+		if let returnClosure = didSelectCellClosure {
+			returnClosure(post)
+		}
 	}
 }
