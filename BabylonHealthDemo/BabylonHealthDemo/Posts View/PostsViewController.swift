@@ -46,19 +46,11 @@ class PostsViewController: UIViewController {
 
 extension PostsViewController: PostDetailsViewDelegate {
 	func postAuthorData() -> PostDetailsAuthorDisplayable? {
-		guard let authorData = self.selectedPostUser else {
-			return nil
-		}
-		
-		return authorData
+		return self.selectedPostUser
 	}
 	
 	func postData() -> PostDetailsContentDisplayable? {
-		guard let selectedPostData = self.selectedPost else {
-			return nil
-		}
-		
-		return selectedPostData
+		return self.selectedPost
 	}
 	
 	func numPostComments() -> Int {
