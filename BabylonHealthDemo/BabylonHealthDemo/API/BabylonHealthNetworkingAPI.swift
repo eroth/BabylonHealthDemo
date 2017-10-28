@@ -14,7 +14,7 @@ typealias PostDetailsCompletionBlock = (_ user: User, _ comments: [Comment]) -> 
 typealias UserInfoCompletionBlock = (_ user: User) -> Void
 typealias PostCommentsCompletionBlock = (_ postComments: [Comment]) -> Void
 
-enum APIError: LocalizedError {
+enum APINetworkingError: LocalizedError {
 	case jsonDecodingError
 	
 	var errorDescription: String? {
@@ -47,7 +47,7 @@ struct BabylonHealthNetworkingAPI {
 				}
 			} catch let e {
 				print(e)
-				failureCompletion(APIError.jsonDecodingError)
+				failureCompletion(APINetworkingError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
 			
@@ -113,7 +113,7 @@ struct BabylonHealthNetworkingAPI {
 				successCompletion(user)
 			} catch let error {
 				print(error)
-				failureCompletion(APIError.jsonDecodingError)
+				failureCompletion(APINetworkingError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
 			failureCompletion(error)
@@ -133,7 +133,7 @@ struct BabylonHealthNetworkingAPI {
 				successCompletion(comments)
 			} catch let error {
 				print(error)
-				failureCompletion(APIError.jsonDecodingError)
+				failureCompletion(APINetworkingError.jsonDecodingError)
 			}
 		}, errorCompletion: { error in
 			print(error)

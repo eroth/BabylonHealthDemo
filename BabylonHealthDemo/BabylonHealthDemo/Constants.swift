@@ -22,4 +22,8 @@ struct Constants {
 		static let POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER = "PostsTableViewCellReuseIdentifier"
 		static let PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER = "ShowPostDetailsSegueIdentifier"
 	}
+	
+	struct Database {
+		static let FIREBASE_POSTS_PATH = "posts"
+	}
 }
