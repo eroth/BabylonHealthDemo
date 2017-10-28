@@ -37,12 +37,7 @@ enum CustomError: LocalizedError {
 	}
 }
 
-protocol NetworkingService {
-	@discardableResult
-	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, errorCompletion: @escaping (Error) -> Void) -> URLSessionDataTask?
-}
-
-struct VanillaNetworking : NetworkingService {
+struct VanillaNetworkingService : NetworkingService {
 	@discardableResult
 	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, errorCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
 		guard let url = URLConfig(path: route, queryComponents: queryParams).url else {

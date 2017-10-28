@@ -28,7 +28,7 @@ enum APIError: LocalizedError {
 struct BabylonHealthAPI {
 	private let networkingService: NetworkingService
 	
-	init(networkingService: NetworkingService = VanillaNetworking()) {
+	init(networkingService: NetworkingService = VanillaNetworkingService()) {
 		self.networkingService = networkingService
 	}
 	

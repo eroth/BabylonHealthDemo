@@ -10,7 +10,7 @@
 		565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */; };
 		565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */; };
 		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
-		569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* NetworkingService.swift */; };
+		569591131F9F2AC100C0AE99 /* VanillaNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */; };
 		569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */; };
 		569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591171F9F2BAF00C0AE99 /* Constants.swift */; };
 		5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */; };
@@ -27,6 +27,10 @@
 		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
 		56B41B551FA0C49B004358F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B541FA0C49B004358F1 /* User.swift */; };
 		56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B561FA0C4AC004358F1 /* Comment.swift */; };
+		56ED6EE11FA36FE100D8F586 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE01FA36FE100D8F586 /* DataManager.swift */; };
+		56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE21FA371C200D8F586 /* DatabaseService.swift */; };
+		56ED6EE51FA3974300D8F586 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE41FA3974300D8F586 /* NetworkingService.swift */; };
+		56ED6EE81FA397C700D8F586 /* FirebaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +47,7 @@
 		565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsContentDisplayable.swift; sourceTree = "<group>"; };
 		565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsAuthorDisplayable.swift; sourceTree = "<group>"; };
 		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
-		569591121F9F2AC100C0AE99 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaNetworkingService.swift; sourceTree = "<group>"; };
 		569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Default.swift"; sourceTree = "<group>"; };
 		569591171F9F2BAF00C0AE99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5695911A1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthAPI.swift; sourceTree = "<group>"; };
@@ -64,6 +68,10 @@
 		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		56B41B541FA0C49B004358F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56B41B561FA0C4AC004358F1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		56ED6EE01FA36FE100D8F586 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		56ED6EE21FA371C200D8F586 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		56ED6EE41FA3974300D8F586 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +97,8 @@
 			children = (
 				565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */,
 				565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */,
+				56ED6EE21FA371C200D8F586 /* DatabaseService.swift */,
+				56ED6EE41FA3974300D8F586 /* NetworkingService.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -97,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				569591101F9F29B900C0AE99 /* URLConfig.swift */,
-				569591121F9F2AC100C0AE99 /* NetworkingService.swift */,
+				569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -161,6 +171,8 @@
 				56E65A031F9FEE1600A43A3D /* Posts View */,
 				56A02C461FA1CEE20040D3FC /* Post Details View */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
+				56ED6EDF1FA36FB200D8F586 /* Data Retrieval */,
+				56ED6EE61FA3977F00D8F586 /* Database */,
 				569591191F9F2DA200C0AE99 /* API */,
 				569591141F9F2B5E00C0AE99 /* Extensions */,
 				565B19E11FA2255400D042E5 /* Protocols */,
@@ -192,6 +204,22 @@
 				56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */,
 			);
 			path = "Posts View";
+			sourceTree = "<group>";
+		};
+		56ED6EDF1FA36FB200D8F586 /* Data Retrieval */ = {
+			isa = PBXGroup;
+			children = (
+				56ED6EE01FA36FE100D8F586 /* DataManager.swift */,
+			);
+			path = "Data Retrieval";
+			sourceTree = "<group>";
+		};
+		56ED6EE61FA3977F00D8F586 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,20 +327,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */,
+				56ED6EE11FA36FE100D8F586 /* DataManager.swift in Sources */,
 				5695911B1F9F2DBB00C0AE99 /* BabylonHealthAPI.swift in Sources */,
+				56ED6EE51FA3974300D8F586 /* NetworkingService.swift in Sources */,
 				565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */,
 				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
 				56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
+				56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
 				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,
 				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,
-				569591131F9F2AC100C0AE99 /* NetworkingService.swift in Sources */,
+				569591131F9F2AC100C0AE99 /* VanillaNetworkingService.swift in Sources */,
 				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
 				56B41B551FA0C49B004358F1 /* User.swift in Sources */,
+				56ED6EE81FA397C700D8F586 /* FirebaseDatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
