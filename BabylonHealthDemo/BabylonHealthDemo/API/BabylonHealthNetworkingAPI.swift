@@ -47,10 +47,14 @@ struct BabylonHealthNetworkingAPI {
 				}
 			} catch let e {
 				print(e)
-				failureCompletion(APINetworkingError.jsonDecodingError)
+				DispatchQueue.main.async {
+					failureCompletion(APINetworkingError.jsonDecodingError)
+				}
 			}
-		}, errorCompletion: { error in
-			
+		}, failureCompletion: { error in
+			DispatchQueue.main.async {
+				failureCompletion(error)
+			}
 		})
 	}
 	
@@ -115,7 +119,7 @@ struct BabylonHealthNetworkingAPI {
 				print(error)
 				failureCompletion(APINetworkingError.jsonDecodingError)
 			}
-		}, errorCompletion: { error in
+		}, failureCompletion: { error in
 			failureCompletion(error)
 			print(error)
 		})
@@ -135,7 +139,7 @@ struct BabylonHealthNetworkingAPI {
 				print(error)
 				failureCompletion(APINetworkingError.jsonDecodingError)
 			}
-		}, errorCompletion: { error in
+		}, failureCompletion: { error in
 			print(error)
 			failureCompletion(error)
 		})

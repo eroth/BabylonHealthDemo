@@ -9,7 +9,7 @@
 import Foundation
 
 extension DatabaseService {
-	func read(configuration: DatabaseConfiguration = DatabaseConfiguration()) {}
-	
 	func create(configuration: DatabaseConfiguration = DatabaseConfiguration()) {}
+	
+	func read(configuration: DatabaseConfiguration = DatabaseConfiguration(), params: ParamsDict = ParamsDict()) {}
 }

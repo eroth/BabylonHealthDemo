@@ -15,13 +15,16 @@ struct DataManager {
 	func retrieveAllPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) {
 		self.networkingAPI.loadPosts(successCompletion: { posts in
 			self.databaseAPI.writePosts(posts: posts, successCompletion: {
-				
 			}, failureCompletion: { error in
-				
+
 			})
 			successCompletion(posts)
 		}, failureCompletion: { error in
-
+			self.databaseAPI.readPosts(successCompletion: { posts in
+				successCompletion(posts)
+			}, failureCompletion: { error in
+				failureCompletion(error)
+			})
 		})
 	}
 	

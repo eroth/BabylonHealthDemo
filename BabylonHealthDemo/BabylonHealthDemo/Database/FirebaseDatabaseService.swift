@@ -10,12 +10,12 @@ import Foundation
 import FirebaseDatabase
 
 struct FirebaseDatabaseService: DatabaseService {
-	func create<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
 		
-		ref.child(path).setValue(params, withCompletionBlock: { error, databaseRef in
+		ref.child(path).setValue(object, withCompletionBlock: { error, databaseRef in
 			if let e = error {
 				failureCompletion(e)
 			} else {
@@ -24,7 +24,15 @@ struct FirebaseDatabaseService: DatabaseService {
 		})
 	}
 	
-	func read<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping ([String : Any]) -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func read(configuration: DatabaseConfiguration, params: [String : Any], successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void) {
+		let path = configuration.path
+		var ref: DatabaseReference!
+		ref = Database.database().reference()
 		
+		ref.child(path).observeSingleEvent(of: .value, with: { snapshot in
+			successCompletion(snapshot)
+		}, withCancel: { error in
+			failureCompletion(error)
+		})
 	}
 }

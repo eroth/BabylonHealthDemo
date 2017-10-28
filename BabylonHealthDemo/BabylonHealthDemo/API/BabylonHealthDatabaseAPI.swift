@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 enum APIDatabaseError: LocalizedError {
 	case arrayConversionError
@@ -32,15 +33,30 @@ struct BabylonHealthDatabaseAPI {
 		self.databaseService = databaseService
 	}
 	
-	func readPosts(successCompletion: PostsCompletionBlock, failureCompletion: FailureCompletionBlock) {
-		
+	func readPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+		self.databaseService.read(configuration: dbConfig, params: [String: Any](), successCompletion: { response in
+			if response is DataSnapshot {
+				let responseArray = response as! DataSnapshot
+				let jsonDecoder = JSONDecoder()
+				do {
+					let arrayJSONData = try JSONSerialization.data(withJSONObject: responseArray.value!, options: [])
+					let posts = try jsonDecoder.decode([Post].self, from: arrayJSONData)
+					successCompletion(posts)
+				} catch {
+					failureCompletion(APIDatabaseError.arrayConversionError)
+				}
+			}
+		}, failureCompletion: { error in
+			failureCompletion(APIDatabaseError.databaseReadError)
+		})
 	}
 	
 	func writePosts(posts: [Post], successCompletion: @escaping ()-> Void, failureCompletion: @escaping FailureCompletionBlock) {
 		do {
 			let array = try posts.asArray()
 			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-			self.databaseService.create(configuration: dbConfig, params: array, successCompletion: {
+			self.databaseService.create(configuration: dbConfig, object: array, successCompletion: {
 				
 			}, failureCompletion: { error in
 				failureCompletion(APIDatabaseError.databaseWriteError)

@@ -30,42 +30,39 @@ enum CustomError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
 		case .noDataReceived:
-			return "No Data Returned From Server"
+			return "No Data Returned From Server."
 		case .urlError:
-			return "There was an error creating the URL"
+			return "There was an error creating the URL."
 		}
 	}
 }
 
 struct VanillaNetworkingService : NetworkingService {
 	@discardableResult
-	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, errorCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
+	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
 		guard let url = URLConfig(path: route, queryComponents: queryParams).url else {
-			errorCompletion(CustomError.urlError)
+			failureCompletion(CustomError.urlError)
 			
 			return nil
 		}
 
 		let request = URLRequest.defaultRequest(url: url)
-		
 		let dataTask = URLSession.shared.dataTask(with: request) { (data, URLResponse, error) in
 			if let e = error {
 				DispatchQueue.main.async {
-					errorCompletion(e)
+					failureCompletion(e)
 					
 					return
 				}
 			}
 			
 			guard let payload = Payload(data: data) else {
-				errorCompletion(CustomError.noDataReceived)
+				failureCompletion(CustomError.noDataReceived)
 				
 				return
 			}
-			
 			successCompletion(payload)
 		}
-		
 		dataTask.resume()
 		
 		return dataTask

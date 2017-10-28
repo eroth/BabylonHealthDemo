@@ -10,5 +10,5 @@ import Foundation
 
 protocol NetworkingService {
 	@discardableResult
-	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, errorCompletion: @escaping (Error) -> Void) -> URLSessionDataTask?
+	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask?
 }
