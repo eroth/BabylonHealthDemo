@@ -26,14 +26,14 @@ class PostsViewController: UIViewController {
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
-//			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-//				self.selectedPost = post
-//				self.selectedPostUser = user
-//				self.selectedPostComments = comments
-//				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
-//			}, failureCompletion: { error in
-//
-//			})
+			dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
+				self.selectedPost = post
+				self.selectedPostUser = user
+				self.selectedPostComments = comments
+				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
+			}, failureCompletion: { error in
+
+			})
 		}
 	}
 	

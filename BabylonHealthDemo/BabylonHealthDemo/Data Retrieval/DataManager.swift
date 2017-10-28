@@ -19,4 +19,12 @@ struct DataManager {
 			
 		})
 	}
+	
+	func retrievePostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+		self.networkingAPI.getPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
+			successCompletion(user, comments)
+		}, failureCompletion: { error in
+			
+		})
+	}
 }
