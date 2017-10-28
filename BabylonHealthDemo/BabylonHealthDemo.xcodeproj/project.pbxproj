@@ -10,6 +10,9 @@
 		24A9E3EB83189CB8087EF120 /* Pods_BabylonHealthDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03445E2F15C3BC1A94A015 /* Pods_BabylonHealthDemo.framework */; };
 		56131E251FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E241FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift */; };
 		56131E271FA486AC00B9CB01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */; };
+		56131E291FA4991D00B9CB01 /* Encodable+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E281FA4991D00B9CB01 /* Encodable+Collections.swift */; };
+		56131E2B1FA4A1D600B9CB01 /* DatabaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */; };
+		56131E2D1FA4A22B00B9CB01 /* DatabaseService+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E2C1FA4A22B00B9CB01 /* DatabaseService+Config.swift */; };
 		565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */; };
 		565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */; };
 		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
@@ -51,6 +54,9 @@
 		0E5BD9AEFADC7010748F775B /* Pods-BabylonHealthDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabylonHealthDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BabylonHealthDemo/Pods-BabylonHealthDemo.release.xcconfig"; sourceTree = "<group>"; };
 		56131E241FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthDatabaseAPI.swift; sourceTree = "<group>"; };
 		56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		56131E281FA4991D00B9CB01 /* Encodable+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Collections.swift"; sourceTree = "<group>"; };
+		56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfiguration.swift; sourceTree = "<group>"; };
+		56131E2C1FA4A22B00B9CB01 /* DatabaseService+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Config.swift"; sourceTree = "<group>"; };
 		565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsContentDisplayable.swift; sourceTree = "<group>"; };
 		565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsAuthorDisplayable.swift; sourceTree = "<group>"; };
 		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */,
+				56131E281FA4991D00B9CB01 /* Encodable+Collections.swift */,
+				56131E2C1FA4A22B00B9CB01 /* DatabaseService+Config.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */,
+				56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -423,11 +432,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BabylonHealthDemo/Pods-BabylonHealthDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +494,7 @@
 				565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */,
 				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
 				56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */,
+				56131E2B1FA4A1D600B9CB01 /* DatabaseConfiguration.swift in Sources */,
 				569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */,
 				56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
@@ -492,8 +504,10 @@
 				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,
 				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,
 				569591131F9F2AC100C0AE99 /* VanillaNetworkingService.swift in Sources */,
+				56131E2D1FA4A22B00B9CB01 /* DatabaseService+Config.swift in Sources */,
 				569591181F9F2BAF00C0AE99 /* Constants.swift in Sources */,
 				56B41B551FA0C49B004358F1 /* User.swift in Sources */,
+				56131E291FA4991D00B9CB01 /* Encodable+Collections.swift in Sources */,
 				56ED6EE81FA397C700D8F586 /* FirebaseDatabaseService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

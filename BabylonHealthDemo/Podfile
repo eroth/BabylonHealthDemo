@@ -6,7 +6,7 @@ target 'BabylonHealthDemo' do
   use_frameworks!
 
   # Pods for BabylonHealthDemo
-  pod 'Firebase/Core'
+  pod 'Firebase/Database'
 
   target 'BabylonHealthDemoTests' do
     inherit! :search_paths

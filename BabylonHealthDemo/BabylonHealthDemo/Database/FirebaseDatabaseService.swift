@@ -7,9 +7,24 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 struct FirebaseDatabaseService: DatabaseService {
-	func readData(params: Any, successCompletion: @escaping ([String : Any]) -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func create<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
+		let path = configuration.path
+		var ref: DatabaseReference!
+		ref = Database.database().reference()
+		
+		ref.child(path).setValue(params, withCompletionBlock: { error, databaseRef in
+			if let e = error {
+				failureCompletion(e)
+			} else {
+				successCompletion()
+			}
+		})
+	}
+	
+	func read<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping ([String : Any]) -> Void, failureCompletion: @escaping (Error) -> Void) {
 		
 	}
 }

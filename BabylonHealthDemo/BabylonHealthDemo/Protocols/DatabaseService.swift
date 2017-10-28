@@ -9,5 +9,7 @@
 import Foundation
 
 protocol DatabaseService {
-	func readData(params: Any, successCompletion: @escaping ([String: Any]) -> Void, failureCompletion: @escaping (Error) -> Void)
+	func read<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping ([String: Any]) -> Void, failureCompletion: @escaping (Error) -> Void)
+	
+	func create<T: Collection>(configuration: DatabaseConfiguration, params: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void)
 }
