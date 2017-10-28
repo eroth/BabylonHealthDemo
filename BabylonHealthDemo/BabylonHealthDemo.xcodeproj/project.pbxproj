@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		24A9E3EB83189CB8087EF120 /* Pods_BabylonHealthDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA03445E2F15C3BC1A94A015 /* Pods_BabylonHealthDemo.framework */; };
 		56131E251FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E241FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift */; };
+		56131E271FA486AC00B9CB01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */; };
 		565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */; };
 		565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */; };
 		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		0E5BD9AEFADC7010748F775B /* Pods-BabylonHealthDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BabylonHealthDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-BabylonHealthDemo/Pods-BabylonHealthDemo.release.xcconfig"; sourceTree = "<group>"; };
 		56131E241FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthDatabaseAPI.swift; sourceTree = "<group>"; };
+		56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsContentDisplayable.swift; sourceTree = "<group>"; };
 		565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsAuthorDisplayable.swift; sourceTree = "<group>"; };
 		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
 				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 				56A153011F9DEF100021E021 /* Info.plist */,
+				56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */,
 				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 			);
 			path = BabylonHealthDemo;
@@ -348,6 +351,7 @@
 			files = (
 				56A153001F9DEF100021E021 /* LaunchScreen.storyboard in Resources */,
 				56A152FD1F9DEF100021E021 /* Assets.xcassets in Resources */,
+				56131E271FA486AC00B9CB01 /* GoogleService-Info.plist in Resources */,
 				56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */,
 				56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */,
 			);
