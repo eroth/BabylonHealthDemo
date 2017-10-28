@@ -33,7 +33,7 @@ struct BabylonHealthNetworkingAPI {
 	}
 	
 	@discardableResult
-	func getPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
+	func loadPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> URLSessionDataTask? {
 		return networkingService.performRequest(route: Constants.Networking.POSTS_ROUTE, queryParams: nil, successCompletion: { payload in
 			let jsonDecoder = JSONDecoder()
 			do {
@@ -55,7 +55,7 @@ struct BabylonHealthNetworkingAPI {
 	}
 	
 	@discardableResult
-	func getPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> [URLSessionDataTask] {
+	func loadPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) -> [URLSessionDataTask] {
 		var dataTasks: [URLSessionDataTask] = []
 		var user: User?
 		var comments: [Comment]?

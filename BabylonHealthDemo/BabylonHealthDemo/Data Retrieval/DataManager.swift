@@ -13,7 +13,7 @@ struct DataManager {
 	let databaseAPI = BabylonHealthDatabaseAPI()
 	
 	func retrieveAllPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) {
-		self.networkingAPI.getPosts(successCompletion: { posts in
+		self.networkingAPI.loadPosts(successCompletion: { posts in
 			successCompletion(posts)
 		}, failureCompletion: { error in
 			
@@ -21,7 +21,7 @@ struct DataManager {
 	}
 	
 	func retrievePostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
-		self.networkingAPI.getPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
+		self.networkingAPI.loadPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
 			successCompletion(user, comments)
 		}, failureCompletion: { error in
 			
