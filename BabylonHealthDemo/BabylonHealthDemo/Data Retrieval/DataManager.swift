@@ -9,12 +9,14 @@
 import Foundation
 
 struct DataManager {
-	typealias T = Post
-//	let networkingService: NetworkingService
-//	let databaseService: DatabaseService
+	let networkingAPI = BabylonHealthNetworkingAPI()
+	let databaseAPI = BabylonHealthDatabaseAPI()
 	
-	init(networkingService: NetworkingService = VanillaNetworkingService(), databaseService: DatabaseService = FirebaseDatabaseService()) {
-//		self.networkingService = networkingService
-//		self.databaseService = databaseService
+	func retrieveAllPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) {
+		self.networkingAPI.getPosts(successCompletion: { posts in
+			successCompletion(posts)
+		}, failureCompletion: { error in
+			
+		})
 	}
 }

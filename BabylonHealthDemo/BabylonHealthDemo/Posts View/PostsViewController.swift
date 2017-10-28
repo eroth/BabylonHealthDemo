@@ -18,22 +18,22 @@ class PostsViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		let babylonHealthAPI = BabylonHealthAPI()
-		babylonHealthAPI.getPosts(successCompletion: { posts in
+		let dataManager = DataManager()
+		dataManager.retrieveAllPosts(successCompletion: { posts in
 			self.postsTableViewObject.postsDataSource = posts
 		}, failureCompletion: { error in
 			
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
-			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-				self.selectedPost = post
-				self.selectedPostUser = user
-				self.selectedPostComments = comments
-				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
-			}, failureCompletion: { error in
-				
-			})
+//			babylonHealthAPI.getPostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
+//				self.selectedPost = post
+//				self.selectedPostUser = user
+//				self.selectedPostComments = comments
+//				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
+//			}, failureCompletion: { error in
+//
+//			})
 		}
 	}
 	

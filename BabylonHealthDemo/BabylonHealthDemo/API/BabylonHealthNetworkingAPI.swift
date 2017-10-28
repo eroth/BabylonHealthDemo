@@ -1,5 +1,5 @@
 //
-//  BabylonHealthAPI.swift
+//  BabylonHealthNetworkingAPI.swift
 //  BabylonHealthDemo
 //
 //  Created by Evan Roth on 10/24/17.
@@ -25,7 +25,7 @@ enum APIError: LocalizedError {
 	}
 }
 
-struct BabylonHealthAPI {
+struct BabylonHealthNetworkingAPI {
 	private let networkingService: NetworkingService
 	
 	init(networkingService: NetworkingService = VanillaNetworkingService()) {
