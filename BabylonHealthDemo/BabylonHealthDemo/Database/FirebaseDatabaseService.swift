@@ -14,8 +14,14 @@ struct FirebaseDatabaseService: DatabaseService {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
+		let parentNode = ref.child(path)
+		var writeNode = parentNode
 		
-		ref.child(path).setValue(object, withCompletionBlock: { error, databaseRef in
+		if let childPath = configuration.childPath {
+			let childNode = parentNode.child(childPath)
+			writeNode = childNode
+		}
+		writeNode.setValue(object, withCompletionBlock: { error, databaseRef in
 			if let e = error {
 				failureCompletion(e)
 			} else {
@@ -35,4 +41,18 @@ struct FirebaseDatabaseService: DatabaseService {
 			failureCompletion(error)
 		})
 	}
+	
+//	func update<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
+//		let path = configuration.path
+//		var ref: DatabaseReference!
+//		ref = Database.database().reference()
+//
+//		ref.child(path).updateChildValues(object, withCompletionBlock: { error, databaseRef in
+//			if let e = error {
+//				failureCompletion(e)
+//			} else {
+//				successCompletion()
+//			}
+//		})
+//	}
 }

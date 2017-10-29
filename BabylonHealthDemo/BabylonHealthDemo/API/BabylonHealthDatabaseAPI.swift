@@ -52,7 +52,11 @@ struct BabylonHealthDatabaseAPI {
 		})
 	}
 	
-	func writePosts(posts: [Post], successCompletion: @escaping ()-> Void, failureCompletion: @escaping FailureCompletionBlock) {
+	func readPostDetails(successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+		
+	}
+	
+	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
 		do {
 			let array = try posts.asArray()
 			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
@@ -63,6 +67,34 @@ struct BabylonHealthDatabaseAPI {
 			})
 		} catch {
 			failureCompletion(APIDatabaseError.arrayConversionError)
+		}
+	}
+	
+	func writePostDetails(user: User, comments: [Comment], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
+		do {
+			let userIdString = String(describing: user.userId)
+			let userDict = try user.asDictionary()
+//			let fireBaseUserDict = [userDictKey: userDict]
+			let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
+			self.databaseService.create(configuration: userDbConfig, object: userDict, successCompletion: {
+
+			}, failureCompletion: { error in
+
+			})
+			
+//			if let firstComment = comments.first {
+//				let commentsDictKey = String(describing: firstComment.postId)
+//				let commentsArray = try comments.asArray()
+//				let fireBaseCommentsDict: [String: Any] = [commentsDictKey: commentsArray]
+//				let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentsDictKey)
+//				self.databaseService.create(configuration: commentsDbConfig, object: fireBaseCommentsDict, successCompletion: {
+//					
+//				}, failureCompletion: { error in
+//					
+//				})
+//			}
+		} catch {
+			
 		}
 	}
 }

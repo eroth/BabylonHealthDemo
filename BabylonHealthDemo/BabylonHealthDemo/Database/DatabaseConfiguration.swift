@@ -10,8 +10,10 @@ import Foundation
 
 struct DatabaseConfiguration {
 	let path: String
+	let childPath: String?
 	
-	init(path: String = String()) {
+	init(path: String = String(), childPath: String? = nil) {
 		self.path = path
+		self.childPath = childPath
 	}
 }

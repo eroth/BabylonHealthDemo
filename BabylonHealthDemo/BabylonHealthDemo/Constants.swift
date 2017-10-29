@@ -25,5 +25,7 @@ struct Constants {
 	
 	struct Database {
 		static let FIREBASE_POSTS_PATH = "posts"
+		static let FIREBASE_USERS_PATH = "users"
+		static let FIREBASE_COMMENTS_PATH = "comments"
 	}
 }

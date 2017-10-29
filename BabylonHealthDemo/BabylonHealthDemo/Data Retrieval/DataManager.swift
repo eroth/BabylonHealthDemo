@@ -30,6 +30,11 @@ struct DataManager {
 	
 	func retrievePostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
 		self.networkingAPI.loadPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
+			self.databaseAPI.writePostDetails(user: user, comments: comments, successCompletion: {
+				
+			}, failureCompletion: { error in
+				
+			})
 			successCompletion(user, comments)
 		}, failureCompletion: { error in
 			
