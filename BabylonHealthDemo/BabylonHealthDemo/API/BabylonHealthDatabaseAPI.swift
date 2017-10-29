@@ -10,13 +10,13 @@ import Foundation
 import FirebaseDatabase
 
 enum APIDatabaseError: LocalizedError {
-	case arrayConversionError
+	case conversionError
 	case databaseWriteError
 	case databaseReadError
 	
 	var errorDescription: String? {
 		switch self {
-		case .arrayConversionError:
+		case .conversionError:
 			return "There was an error preparing for database write."
 		case .databaseWriteError:
 			return "There was an error writing to the database."
@@ -44,7 +44,7 @@ struct BabylonHealthDatabaseAPI {
 					let posts = try jsonDecoder.decode([Post].self, from: arrayJSONData)
 					successCompletion(posts)
 				} catch {
-					failureCompletion(APIDatabaseError.arrayConversionError)
+					failureCompletion(APIDatabaseError.conversionError)
 				}
 			}
 		}, failureCompletion: { error in
@@ -57,17 +57,22 @@ struct BabylonHealthDatabaseAPI {
 	}
 	
 	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
-		do {
-			let array = try posts.asArray()
-			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-			self.databaseService.create(configuration: dbConfig, object: array, successCompletion: {
-				
-			}, failureCompletion: { error in
-				failureCompletion(APIDatabaseError.databaseWriteError)
-			})
-		} catch {
-			failureCompletion(APIDatabaseError.arrayConversionError)
+		var postsDict: [String: Any] = [:]
+		posts.forEach {
+			do {
+				let postDict = try $0.asDictionary()
+				postsDict[String(describing: $0.postId)] = postDict
+			} catch {
+				failureCompletion(APIDatabaseError.conversionError)
+			}
 		}
+		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+		
+		self.databaseService.create(configuration: dbConfig, object: postsDict, successCompletion: {
+			
+		}, failureCompletion: { error in
+			failureCompletion(APIDatabaseError.databaseWriteError)
+		})
 	}
 	
 	func writePostDetails(user: User, comments: [Comment], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
