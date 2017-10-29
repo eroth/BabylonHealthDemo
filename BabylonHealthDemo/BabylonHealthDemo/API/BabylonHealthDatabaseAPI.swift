@@ -74,25 +74,25 @@ struct BabylonHealthDatabaseAPI {
 		do {
 			let userIdString = String(describing: user.userId)
 			let userDict = try user.asDictionary()
-//			let fireBaseUserDict = [userDictKey: userDict]
 			let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
+			
 			self.databaseService.create(configuration: userDbConfig, object: userDict, successCompletion: {
 
 			}, failureCompletion: { error in
 
 			})
 			
-//			if let firstComment = comments.first {
-//				let commentsDictKey = String(describing: firstComment.postId)
-//				let commentsArray = try comments.asArray()
-//				let fireBaseCommentsDict: [String: Any] = [commentsDictKey: commentsArray]
-//				let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentsDictKey)
-//				self.databaseService.create(configuration: commentsDbConfig, object: fireBaseCommentsDict, successCompletion: {
-//					
-//				}, failureCompletion: { error in
-//					
-//				})
-//			}
+			if let firstComment = comments.first {
+				let commentIdString = String(describing: firstComment.postId)
+				let commentsArray = try comments.asArray()
+				let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentIdString)
+				
+				self.databaseService.create(configuration: commentsDbConfig, object: commentsArray, successCompletion: {
+					
+				}, failureCompletion: { error in
+					
+				})
+			}
 		} catch {
 			
 		}
