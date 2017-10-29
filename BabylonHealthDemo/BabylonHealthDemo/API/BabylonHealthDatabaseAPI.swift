@@ -37,7 +37,7 @@ struct BabylonHealthDatabaseAPI {
 		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
 		
 		databaseService.read(configuration: dbConfig, successCompletion: { response in
-			if response is DataSnapshot, let responseArray = response as! DataSnapshot {
+			if response is DataSnapshot {
 				let responseArray = response as! DataSnapshot
 				let jsonDecoder = JSONDecoder()
 				do {
@@ -65,22 +65,17 @@ struct BabylonHealthDatabaseAPI {
 	}
 	
 	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
-		var postsDict: [String: Any] = [:]
-		posts.forEach {
-			do {
-				let postDict = try $0.asDictionary()
-				postsDict[String(describing: $0.postId)] = postDict
-			} catch {
-				failureCompletion(APIDatabaseError.conversionError)
-			}
+		do {
+			let array = try posts.asArray()
+			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+			self.databaseService.create(configuration: dbConfig, object: array, successCompletion: {
+				
+			}, failureCompletion: { error in
+				failureCompletion(APIDatabaseError.databaseWriteError)
+			})
+		} catch {
+			failureCompletion(APIDatabaseError.conversionError)
 		}
-		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-		
-		databaseService.create(configuration: postDbConfig, object: postsDict, successCompletion: {
-			
-		}, failureCompletion: { error in
-			failureCompletion(APIDatabaseError.databaseWriteError)
-		})
 	}
 	
 	func writePostDetails(user: User, comments: [Comment], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
