@@ -13,5 +13,5 @@ protocol DatabaseService {
 	
 	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void)
 	
-	func read(configuration: DatabaseConfiguration, params: [String: Any], successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void)
+	func read(configuration: DatabaseConfiguration, params: ParamsDict?, successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void)
 }

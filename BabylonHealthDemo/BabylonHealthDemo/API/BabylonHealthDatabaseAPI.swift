@@ -35,8 +35,9 @@ struct BabylonHealthDatabaseAPI {
 	
 	func readPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
 		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-		self.databaseService.read(configuration: dbConfig, params: [String: Any](), successCompletion: { response in
-			if response is DataSnapshot {
+		
+		databaseService.read(configuration: dbConfig, successCompletion: { response in
+			if response is DataSnapshot, let responseArray = response as! DataSnapshot {
 				let responseArray = response as! DataSnapshot
 				let jsonDecoder = JSONDecoder()
 				do {
@@ -52,8 +53,15 @@ struct BabylonHealthDatabaseAPI {
 		})
 	}
 	
-	func readPostDetails(successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+	func readPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+		let userIdString = String(describing: userId)
+		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
 		
+		databaseService.read(configuration: userDbConfig, successCompletion: { response in
+			print("here")
+		}, failureCompletion: { error in
+			
+		})
 	}
 	
 	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
@@ -66,9 +74,9 @@ struct BabylonHealthDatabaseAPI {
 				failureCompletion(APIDatabaseError.conversionError)
 			}
 		}
-		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
 		
-		self.databaseService.create(configuration: dbConfig, object: postsDict, successCompletion: {
+		databaseService.create(configuration: postDbConfig, object: postsDict, successCompletion: {
 			
 		}, failureCompletion: { error in
 			failureCompletion(APIDatabaseError.databaseWriteError)
@@ -81,7 +89,7 @@ struct BabylonHealthDatabaseAPI {
 			let userDict = try user.asDictionary()
 			let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
 			
-			self.databaseService.create(configuration: userDbConfig, object: userDict, successCompletion: {
+			databaseService.create(configuration: userDbConfig, object: userDict, successCompletion: {
 
 			}, failureCompletion: { error in
 
@@ -92,7 +100,7 @@ struct BabylonHealthDatabaseAPI {
 				let commentsArray = try comments.asArray()
 				let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentIdString)
 				
-				self.databaseService.create(configuration: commentsDbConfig, object: commentsArray, successCompletion: {
+				databaseService.create(configuration: commentsDbConfig, object: commentsArray, successCompletion: {
 					
 				}, failureCompletion: { error in
 					

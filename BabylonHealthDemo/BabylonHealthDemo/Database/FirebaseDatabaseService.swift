@@ -30,12 +30,19 @@ struct FirebaseDatabaseService: DatabaseService {
 		})
 	}
 	
-	func read(configuration: DatabaseConfiguration, params: [String : Any], successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func read(configuration: DatabaseConfiguration, params: DatabaseService.ParamsDict?, successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void) {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
+		let parentNode = ref.child(path)
+		var readNode = parentNode
 		
-		ref.child(path).observeSingleEvent(of: .value, with: { snapshot in
+		if let childPath = configuration.childPath {
+			let childNode = parentNode.child(childPath)
+			readNode = childNode
+		}
+		
+		readNode.observeSingleEvent(of: .value, with: { snapshot in
 			successCompletion(snapshot)
 		}, withCancel: { error in
 			failureCompletion(error)
