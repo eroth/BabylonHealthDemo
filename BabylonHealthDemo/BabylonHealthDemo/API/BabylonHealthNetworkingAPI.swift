@@ -63,7 +63,7 @@ struct BabylonHealthNetworkingAPI {
 		var dataTasks: [URLSessionDataTask] = []
 		var user: User?
 		var comments: [Comment]?
-		var error: Error? // Just using one error if there is one
+		var rseponseError: Error? // Just using one error if there is one
 		let dispatchGroup = DispatchGroup()
 		
 		dispatchGroup.enter()
@@ -71,7 +71,7 @@ struct BabylonHealthNetworkingAPI {
 			user = userInfo
 			dispatchGroup.leave()
 		}, failureCompletion: { getUserError in
-			error = getUserError
+			rseponseError = getUserError
 			dispatchGroup.leave()
 		}) {
 			dataTasks.append(postUserTask)
@@ -82,7 +82,7 @@ struct BabylonHealthNetworkingAPI {
 			comments = postComments
 			dispatchGroup.leave()
 		}, failureCompletion: { getCommentsError in
-			error = getCommentsError
+			rseponseError = getCommentsError
 			dispatchGroup.leave()
 		}) {
 			dataTasks.append(postCommentsTask)
@@ -90,12 +90,12 @@ struct BabylonHealthNetworkingAPI {
 		
 		dispatchGroup.notify(queue: .main, execute: {
 			guard let user = user else {
-				failureCompletion(error!)
+				failureCompletion(rseponseError!)
 				
 				return
 			}
 			guard let comments = comments else {
-				failureCompletion(error!)
+				failureCompletion(rseponseError!)
 				
 				return
 			}

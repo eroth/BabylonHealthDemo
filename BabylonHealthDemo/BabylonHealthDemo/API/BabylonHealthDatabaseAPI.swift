@@ -37,17 +37,15 @@ struct BabylonHealthDatabaseAPI {
 		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
 		
 		databaseService.read(configuration: dbConfig, successCompletion: { response in
-			if response is DataSnapshot {
-				let responseArray = response as! DataSnapshot
-				let jsonDecoder = JSONDecoder()
-				do {
-					let arrayJSONData = try JSONSerialization.data(withJSONObject: responseArray.value!, options: [])
-					let posts = try jsonDecoder.decode([Post].self, from: arrayJSONData)
-					successCompletion(posts)
-				} catch {
-					failureCompletion(APIDatabaseError.conversionError)
-				}
+			let snapshot = response as! DataSnapshot
+			do {
+				let postsDataArray = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
+				let posts = try JSONDecoder().decode([Post].self, from: postsDataArray)
+				successCompletion(posts)
+			} catch {
+				failureCompletion(APIDatabaseError.conversionError)
 			}
+
 		}, failureCompletion: { error in
 			failureCompletion(APIDatabaseError.databaseReadError)
 		})
@@ -56,12 +54,60 @@ struct BabylonHealthDatabaseAPI {
 	func readPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
 		let userIdString = String(describing: userId)
 		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
+		var user: User?
+		var comments: [Comment]?
+		var responseError: Error? // Just using one error if there is one
+		let dispatchGroup = DispatchGroup()
 		
+		dispatchGroup.enter()
 		databaseService.read(configuration: userDbConfig, successCompletion: { response in
-			print("here")
+			let snapshot = response as! DataSnapshot
+			do {
+				let userDataDict = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
+				let tempUser = try JSONDecoder().decode(User.self, from: userDataDict)
+				user = tempUser
+				dispatchGroup.leave()
+			} catch {
+				responseError = APIDatabaseError.conversionError
+				dispatchGroup.leave()
+			}
 		}, failureCompletion: { error in
-			
+			responseError = APIDatabaseError.databaseReadError
+			dispatchGroup.leave()
 		})
+		
+		let postIdString = String(describing: postId)
+		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: postIdString)
+		
+		dispatchGroup.enter()
+		databaseService.read(configuration: postDbConfig, successCompletion: { response in
+			let snapshot = response as! DataSnapshot
+			do {
+				let commentsDataArray = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
+				let commentsArray = try JSONDecoder().decode([Comment].self, from: commentsDataArray)
+				comments = commentsArray
+				dispatchGroup.leave()
+			} catch {
+				responseError = APIDatabaseError.conversionError
+				dispatchGroup.leave()
+			}
+		}, failureCompletion: { error in
+			responseError = APIDatabaseError.databaseReadError
+			dispatchGroup.leave()
+		})
+		
+		dispatchGroup.notify(queue: .main, execute: {
+			guard let user = user else {
+				failureCompletion(responseError!)
+				return
+			}
+			guard let comments = comments else {
+				failureCompletion(responseError!)
+				return
+			}
+			successCompletion(user, comments)
+		})
+		
 	}
 	
 	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {

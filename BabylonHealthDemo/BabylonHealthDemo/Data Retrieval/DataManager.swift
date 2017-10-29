@@ -39,7 +39,7 @@ struct DataManager {
 			successCompletion(user, comments)
 		}, failureCompletion: { error in
 			self.databaseAPI.readPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
-				
+				successCompletion(user, comments)
 			}, failureCompletion: { error in
 				
 			})
