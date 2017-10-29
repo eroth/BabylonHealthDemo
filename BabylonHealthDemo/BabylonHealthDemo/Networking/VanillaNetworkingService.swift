@@ -51,14 +51,14 @@ struct VanillaNetworkingService : NetworkingService {
 			if let e = error {
 				DispatchQueue.main.async {
 					failureCompletion(e)
-					
-					return
 				}
+				return
 			}
 			
 			guard let payload = Payload(data: data) else {
-				failureCompletion(CustomError.noDataReceived)
-				
+				DispatchQueue.main.async {
+					failureCompletion(CustomError.noDataReceived)
+				}
 				return
 			}
 			successCompletion(payload)
