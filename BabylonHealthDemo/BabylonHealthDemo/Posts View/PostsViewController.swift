@@ -26,12 +26,7 @@ class PostsViewController: UIViewController {
 				case .success(let posts):
 					self.postsTableViewObject.postsDataSource = posts
 				case .failure(let error):
-					let alert = UIAlertController(title: Constants.Alerts.ERROR_TITLE, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-					let okAction = UIAlertAction(title: Constants.Alerts.OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: { alertAction in
-						self.dismiss(animated: true, completion: nil)
-					})
-					alert.addAction(okAction)
-					self.present(alert, animated: true, completion: nil)
+					self.showErrorAlert(message: error.localizedDescription)
 				}
 			})
 		})
@@ -46,12 +41,7 @@ class PostsViewController: UIViewController {
 						let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
 						self.navigationController?.pushViewController(postDetailsVC, animated: true)
 					case .failure(let error):
-						let alert = UIAlertController(title: Constants.Alerts.ERROR_TITLE, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-						let okAction = UIAlertAction(title: Constants.Alerts.OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: { alertAction in
-							self.dismiss(animated: true, completion: nil)
-						})
-						alert.addAction(okAction)
-						self.present(alert, animated: true, completion: nil)
+						self.showErrorAlert(message: error.localizedDescription)
 					}
 				})
 			})
