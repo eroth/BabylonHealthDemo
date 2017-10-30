@@ -37,17 +37,16 @@ struct BabylonHealthDatabaseAPI {
 	
 	func readPosts(completion: @escaping PostsCompletionBlock) -> Void {
 		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-		
 		databaseService.read(configuration: dbConfig, completion: { response in
 			switch response {
 			case .success(let result):
-				do {
-					let postsDataArray = try JSONSerialization.data(withJSONObject: result, options: [])
-					let posts = try JSONDecoder().decode([Post].self, from: postsDataArray)
-					completion(ResponseType.success(posts))
-				} catch {
-					completion(ResponseType.failure(APIDatabaseError.conversionError))
+				guard
+					let postsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let posts = try? JSONDecoder().decode([Post].self, from: postsDataArray) else {
+						completion(ResponseType.failure(APIDatabaseError.conversionError))
+						return
 				}
+				completion(ResponseType.success(posts))
 			case .failure(let error):
 				completion(ResponseType.failure(error))
 			}
@@ -66,13 +65,14 @@ struct BabylonHealthDatabaseAPI {
 		databaseService.read(configuration: userDbConfig, completion: { userResponse in
 			switch userResponse {
 			case .success(let result):
-				do {
-					let userDataDict = try JSONSerialization.data(withJSONObject: result, options: [])
-					let tempUser = try JSONDecoder().decode(User.self, from: userDataDict)
-					user = tempUser
-				} catch {
+				guard
+					let userDataDict = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let tempUser = try? JSONDecoder().decode(User.self, from: userDataDict)
+				else {
 					responseError = APIDatabaseError.conversionError
+					return
 				}
+				user = tempUser
 			case .failure(let error):
 				responseError = error
 			}
@@ -83,47 +83,50 @@ struct BabylonHealthDatabaseAPI {
 		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: postIdString)
 		
 		dispatchGroup.enter()
-		databaseService.read(configuration: postDbConfig, completion: { databaseResponse in
-			switch databaseResponse {
+		databaseService.read(configuration: postDbConfig, completion: { commentsResponse in
+			switch commentsResponse {
 			case .success(let result):
-				do {
-					let commentsDataArray = try JSONSerialization.data(withJSONObject: result, options: [])
-					let commentsArray = try JSONDecoder().decode([Comment].self, from: commentsDataArray)
-					comments = commentsArray
-				} catch {
+				guard
+					let commentsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let commentsArray = try? JSONDecoder().decode([Comment].self, from: commentsDataArray)
+				else {
 					responseError = APIDatabaseError.conversionError
+					return
 				}
-			case .failure:
-				responseError = APIDatabaseError.databaseReadError
+				comments = commentsArray
+			case .failure(let error):
+				responseError = error
 			}
 			dispatchGroup.leave()
 		})
 		
 		dispatchGroup.notify(queue: .main, execute: {
-			guard let user = user,
-				let comments = comments else {
-					completion(ResponseType.failure(responseError!))
-					return
+			guard
+				let user = user,
+				let comments = comments
+			else {
+				completion(ResponseType.failure(responseError!))
+				return
 			}
 			completion(ResponseType.success((user, comments)))
 		})
 	}
 	
 	func writePosts(posts: [Post], completion: (DatabaseWriteCompletionBlock)? = nil) -> Void {
-		do {
-			let array = try posts.asArray()
-			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-			databaseService.create(configuration: dbConfig, object: array, completion: { response in
-				switch response {
-				case .success:
-					completion?(ResponseType.success(true))
-				case .failure(let error):
-					completion?(ResponseType.failure(error))
-				}
-			})
-		} catch {
+		guard let array = try? posts.asArray() else {
 			completion?(ResponseType.failure(APIDatabaseError.conversionError))
+			return
 		}
+		
+		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+		databaseService.create(configuration: dbConfig, object: array, completion: { response in
+			switch response {
+			case .success:
+				completion?(ResponseType.success(true))
+			case .failure(let error):
+				completion?(ResponseType.failure(error))
+			}
+		})
 	}
 	
 	func writePostDetails(user: User, comments: [Comment], completion: (DatabaseWriteCompletionBlock)? = nil) -> Void {
@@ -143,10 +146,12 @@ struct BabylonHealthDatabaseAPI {
 			}
 		})
 		
-		guard let firstComment = comments.first,
-			let commentsArray = try? comments.asArray()	else {
-				completion?(ResponseType.failure(APIDatabaseError.conversionError))
-				return
+		guard
+			let firstComment = comments.first,
+			let commentsArray = try? comments.asArray()
+		else {
+			completion?(ResponseType.failure(APIDatabaseError.conversionError))
+			return
 		}
 		
 		let commentIdString = String(describing: firstComment.postId)

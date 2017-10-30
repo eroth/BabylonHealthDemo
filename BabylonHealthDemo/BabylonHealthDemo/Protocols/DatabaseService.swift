@@ -12,7 +12,7 @@ protocol DatabaseService {
 	typealias ParamsDict = [String: Any]
 	typealias DatabaseCompletionHandler = (ResponseType<DatabaseResponse>) -> Void
 	
-	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, completion: @escaping DatabaseCompletionHandler) -> Void
+	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, completion: DatabaseCompletionHandler?) -> Void
 	
-	func read(configuration: DatabaseConfiguration, params: ParamsDict?, completion: @escaping DatabaseCompletionHandler) -> Void
+	func read(configuration: DatabaseConfiguration, params: ParamsDict?, completion: DatabaseCompletionHandler?) -> Void
 }

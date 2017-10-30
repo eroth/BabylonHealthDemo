@@ -40,7 +40,7 @@ struct FirebaseDatabaseService: DatabaseService {
 		})
 	}
 	
-	func read(configuration: DatabaseConfiguration, completion: (DatabaseCompletionHandler)? = nil) -> Void {
+	func read(configuration: DatabaseConfiguration, params: ParamsDict? = nil, completion: (DatabaseCompletionHandler)? = nil) -> Void {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
