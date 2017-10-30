@@ -27,7 +27,7 @@ struct Constants {
 		static let FIREBASE_POSTS_PATH = "posts"
 		static let FIREBASE_USERS_PATH = "users"
 		static let FIREBASE_COMMENTS_PATH = "comments"
-		static let FIREBASE_OPERATION_TIMEOUT = DispatchTimeInterval.seconds(3)
+		static let FIREBASE_OPERATION_TIMEOUT = DispatchTimeInterval.seconds(2)
 	}
 	
 	struct HUD {
