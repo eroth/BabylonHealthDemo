@@ -36,30 +36,30 @@ struct FirebaseDatabaseService: DatabaseService {
 		ref = Database.database().reference()
 		let parentNode = ref.child(path)
 		var readNode = parentNode
+		var didTimeout = false
+		var didComplete = false
 		
 		if let childPath = configuration.childPath {
 			let childNode = parentNode.child(childPath)
 			readNode = childNode
 		}
-		
+
 		readNode.observeSingleEvent(of: .value, with: { snapshot in
-			successCompletion(snapshot)
-		}, withCancel: { error in
-			failureCompletion(error)
+			didComplete = true
+			if !didTimeout {
+				if snapshot.exists() {
+					successCompletion(snapshot)
+				} else {
+					failureCompletion(APIDatabaseError.databaseReadError)
+				}
+			}
+		})
+
+		DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Database.FIREBASE_OPERATION_TIMEOUT, execute: {
+			if !didTimeout && !didComplete {
+				didTimeout = true
+				failureCompletion(APIDatabaseError.databaseReadError)
+			}
 		})
 	}
-	
-//	func update<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
-//		let path = configuration.path
-//		var ref: DatabaseReference!
-//		ref = Database.database().reference()
-//
-//		ref.child(path).updateChildValues(object, withCompletionBlock: { error, databaseRef in
-//			if let e = error {
-//				failureCompletion(e)
-//			} else {
-//				successCompletion()
-//			}
-//		})
-//	}
 }
