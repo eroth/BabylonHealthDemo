@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostDetailsViewController" customModule="BabylonHealthDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="authorLabel" destination="xcM-LK-Iuz" id="pP7-iG-K3d"/>
+                <outlet property="bodyLabel" destination="bWt-Z3-nHp" id="si8-KK-D0g"/>
+                <outlet property="numCommentsLabel" destination="xMJ-5U-AvG" id="Jd3-A2-KAS"/>
+                <outlet property="view" destination="iN0-l3-epB" id="she-c9-kDV"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LTi-rq-TWp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kEZ-26-0w3" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="191"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xcM-LK-Iuz">
+                                    <rect key="frame" x="8" y="30" width="359" height="37"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWt-Z3-nHp" userLabel="Body">
+                                    <rect key="frame" x="8" y="82" width="359" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMJ-5U-AvG" userLabel="Number Comments">
+                                    <rect key="frame" x="167" y="150" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="xcM-LK-Iuz" firstAttribute="top" secondItem="kEZ-26-0w3" secondAttribute="top" constant="30" id="7x0-rD-tBO"/>
+                                <constraint firstItem="xMJ-5U-AvG" firstAttribute="centerX" secondItem="kEZ-26-0w3" secondAttribute="centerX" id="Jxu-n1-V3f"/>
+                                <constraint firstAttribute="trailing" secondItem="bWt-Z3-nHp" secondAttribute="trailing" constant="8" id="M5R-lt-8rS"/>
+                                <constraint firstItem="xcM-LK-Iuz" firstAttribute="trailing" secondItem="kEZ-26-0w3" secondAttribute="trailing" constant="-8" id="O8l-ap-788"/>
+                                <constraint firstAttribute="bottom" secondItem="xMJ-5U-AvG" secondAttribute="bottom" constant="20" id="Tq7-ya-uhY"/>
+                                <constraint firstItem="xMJ-5U-AvG" firstAttribute="top" secondItem="bWt-Z3-nHp" secondAttribute="bottom" constant="44" id="UMm-zB-Jma"/>
+                                <constraint firstItem="xcM-LK-Iuz" firstAttribute="leading" secondItem="kEZ-26-0w3" secondAttribute="leading" constant="8" id="X1P-7H-g33"/>
+                                <constraint firstItem="bWt-Z3-nHp" firstAttribute="top" secondItem="xcM-LK-Iuz" secondAttribute="bottom" constant="15" id="ZCk-eT-ia7"/>
+                                <constraint firstItem="bWt-Z3-nHp" firstAttribute="leading" secondItem="kEZ-26-0w3" secondAttribute="leading" constant="8" id="nUe-Xv-u2K"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="kEZ-26-0w3" firstAttribute="leading" secondItem="LTi-rq-TWp" secondAttribute="leading" id="5SI-Q4-SxR"/>
+                        <constraint firstAttribute="bottom" secondItem="kEZ-26-0w3" secondAttribute="bottom" id="YWY-ee-2qP"/>
+                        <constraint firstItem="kEZ-26-0w3" firstAttribute="top" secondItem="LTi-rq-TWp" secondAttribute="top" id="dOd-Ib-W1i"/>
+                        <constraint firstItem="kEZ-26-0w3" firstAttribute="width" secondItem="LTi-rq-TWp" secondAttribute="width" id="fry-MO-JZJ"/>
+                        <constraint firstAttribute="trailing" secondItem="kEZ-26-0w3" secondAttribute="trailing" id="mWF-eN-amF"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="LTi-rq-TWp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4Ra-o9-JGP"/>
+                <constraint firstItem="LTi-rq-TWp" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="iZd-jS-kTh"/>
+                <constraint firstItem="LTi-rq-TWp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ngt-m5-Mdv"/>
+                <constraint firstItem="LTi-rq-TWp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="pfP-8L-heT"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="35.5" y="103.5"/>
+        </view>
+    </objects>
+</document>
