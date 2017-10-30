@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Decodable, PostDetailsAuthorDisplayable {
+struct User: Codable, PostDetailsAuthorDisplayable {
 	enum CodingKeys: String, CodingKey {
 		case userId = "id"
 		case name
@@ -29,20 +29,20 @@ struct User: Decodable, PostDetailsAuthorDisplayable {
 	let website: String
 	let company: UserCompany
 	
-	struct UserAddress: Decodable {
+	struct UserAddress: Codable {
 		let street: String
 		let suite: String
 		let city: String
 		let zipcode: String
 		let geo: UserGeo
 		
-		struct UserGeo: Decodable {
+		struct UserGeo: Codable {
 			let lat: String
 			let lng: String
 		}
 	}
 	
-	struct UserCompany: Decodable {
+	struct UserCompany: Codable {
 		enum CodingKeys: String, CodingKey {
 			case name
 			case catchPhrase
