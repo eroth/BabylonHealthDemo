@@ -7,57 +7,45 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PostsViewController: UIViewController {
 	@IBOutlet var postsTableViewObject: PostsTableViewObject!
-	var selectedPostUser: PostDetailsAuthorDisplayable?
-	var selectedPost: PostDetailsContentDisplayable?
-	var selectedPostComments: [Comment]?
+	var viewModel: PostDetailsViewModel?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+		SVProgressHUD.show()
 		let dataManager = DataManager()
-		dataManager.retrieveAllPosts(successCompletion: { posts in
-			self.postsTableViewObject.postsDataSource = posts
-		}, failureCompletion: { error in
-			
+		dataManager.retrieveAllPosts(completion: { response in
+			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: nil)
+			switch response {
+			case .success(let posts):
+				self.postsTableViewObject.postsDataSource = posts
+			case .failure(let error):
+				// TODO need to show alert
+				print("here")
+			}
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
-			dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-				self.selectedPost = post
-				self.selectedPostUser = user
-				self.selectedPostComments = comments
-				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
-			}, failureCompletion: { error in
-
+			SVProgressHUD.show()
+			dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, completion: { response in
+				SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: {
+					switch response {
+					case .success(let user, let comments):
+						let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
+						let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
+						self.navigationController?.pushViewController(postDetailsVC, animated: true)
+					case .failure:
+						// TODO need to handle error
+						print("here")
+					}
+				})
 			})
 		}
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let postDetailsVC = segue.destination as? PostDetailsViewController {
-			postDetailsVC.delegate = self
-		}
-	}
-}
-
-extension PostsViewController: PostDetailsViewDelegate {
-	func postAuthorData() -> PostDetailsAuthorDisplayable? {
-		return self.selectedPostUser
-	}
-	
-	func postData() -> PostDetailsContentDisplayable? {
-		return self.selectedPost
-	}
-	
-	func numPostComments() -> Int {
-		guard let numPostComments = selectedPostComments?.count else {
-			return 0
-		}
-		
-		return numPostComments
 	}
 }

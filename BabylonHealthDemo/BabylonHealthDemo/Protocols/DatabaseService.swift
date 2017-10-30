@@ -10,8 +10,9 @@ import Foundation
 
 protocol DatabaseService {
 	typealias ParamsDict = [String: Any]
+	typealias DatabaseCompletionHandler = (ResponseType<DatabaseResponse>) -> Void
 	
-	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void)
+	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, completion: DatabaseCompletionHandler?) -> Void
 	
-	func read(configuration: DatabaseConfiguration, params: ParamsDict?, successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void)
+	func read(configuration: DatabaseConfiguration, params: ParamsDict?, completion: DatabaseCompletionHandler?) -> Void
 }
