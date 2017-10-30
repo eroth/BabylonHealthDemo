@@ -12,37 +12,41 @@ struct DataManager {
 	let networkingAPI = BabylonHealthNetworkingAPI()
 	let databaseAPI = BabylonHealthDatabaseAPI()
 	
-	func retrieveAllPosts(successCompletion: @escaping ([Post]) -> Void, failureCompletion: @escaping (Error) -> Void) {
-		self.networkingAPI.loadPosts(successCompletion: { posts in
-			self.databaseAPI.writePosts(posts: posts, successCompletion: {
-				
-			}, failureCompletion: { error in
-
-			})
-			successCompletion(posts)
-		}, failureCompletion: { error in
-			self.databaseAPI.readPosts(successCompletion: { posts in
-				successCompletion(posts)
-			}, failureCompletion: { error in
-				failureCompletion(error)
-			})
+	func retrieveAllPosts(completion: @escaping PostsCompletionBlock) -> Void {
+		self.networkingAPI.loadPosts(completion: { networkingResponse in
+			switch networkingResponse {
+			case .success(let posts):
+				completion(ResponseType.success(posts))
+				self.databaseAPI.writePosts(posts: posts)
+			case .failure:
+				self.databaseAPI.readPosts(completion: { databaseResponse in
+					switch databaseResponse {
+					case .success(let posts):
+						completion(ResponseType.success(posts))
+					case .failure(let error):
+						completion(ResponseType.failure(error))
+					}
+				})
+			}
 		})
 	}
 	
-	func retrievePostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
-		self.networkingAPI.loadPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
-			self.databaseAPI.writePostDetails(user: user, comments: comments, successCompletion: {
-				
-			}, failureCompletion: { error in
-				
-			})
-			successCompletion(user, comments)
-		}, failureCompletion: { error in
-			self.databaseAPI.readPostDetails(userId: userId, postId: postId, successCompletion: { user, comments in
-				successCompletion(user, comments)
-			}, failureCompletion: { error in
-				print("here")
-			})
+	func retrievePostDetails(userId: Int, postId: Int, completion: @escaping PostDetailsCompletionBlock) {
+		self.networkingAPI.loadPostDetails(userId: userId, postId: postId, completion: { networkResponse in
+			switch networkResponse {
+			case .success(let user, let comments):
+				completion(ResponseType.success((user, comments)))
+				self.databaseAPI.writePostDetails(user: user, comments: comments)
+			case .failure:
+				self.databaseAPI.readPostDetails(userId: userId, postId: postId, completion: { databaseResponse in
+					switch databaseResponse {
+					case .success(let user, let comments):
+						completion(ResponseType.success((user, comments)))
+					case .failure(let error):
+						completion(ResponseType.failure(error))
+					}
+				})
+			}
 		})
 	}
 }

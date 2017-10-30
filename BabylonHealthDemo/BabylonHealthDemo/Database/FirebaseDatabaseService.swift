@@ -9,8 +9,18 @@
 import Foundation
 import FirebaseDatabase
 
+struct DatabaseResponse {
+	let data: Any
+	let reference: Any?
+	
+	init(data: Any, reference: Any? = nil) {
+		self.data = data
+		self.reference = reference
+	}
+}
+
 struct FirebaseDatabaseService: DatabaseService {
-	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, successCompletion: @escaping () -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func create<T: Collection>(configuration: DatabaseConfiguration, object: T, completion: (DatabaseCompletionHandler)? = nil) -> Void {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
@@ -23,14 +33,14 @@ struct FirebaseDatabaseService: DatabaseService {
 		}
 		writeNode.setValue(object, withCompletionBlock: { error, databaseRef in
 			if let e = error {
-				failureCompletion(e)
-			} else {
-				successCompletion()
+				completion?(ResponseType.failure(e))
+				return
 			}
+			completion?(ResponseType.success(DatabaseResponse(data: databaseRef)))
 		})
 	}
 	
-	func read(configuration: DatabaseConfiguration, params: DatabaseService.ParamsDict?, successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void) {
+	func read(configuration: DatabaseConfiguration, params: ParamsDict? = nil, completion: (DatabaseCompletionHandler)? = nil) -> Void {
 		let path = configuration.path
 		var ref: DatabaseReference!
 		ref = Database.database().reference()
@@ -48,17 +58,21 @@ struct FirebaseDatabaseService: DatabaseService {
 			didComplete = true
 			if !didTimeout {
 				if snapshot.exists() {
-					successCompletion(snapshot)
-				} else {
-					failureCompletion(APIDatabaseError.databaseReadError)
+					guard let value = snapshot.value else {
+						completion?(ResponseType.failure(APIDatabaseError.databaseReadError))
+						return
+					}
+					completion?(ResponseType.success(DatabaseResponse(data: value)))
+					return
 				}
+				completion?(ResponseType.failure(APIDatabaseError.databaseReadError))
 			}
 		})
 
 		DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Database.FIREBASE_OPERATION_TIMEOUT, execute: {
 			if !didTimeout && !didComplete {
 				didTimeout = true
-				failureCompletion(APIDatabaseError.databaseReadError)
+				completion?(ResponseType.failure(APIDatabaseError.databaseReadError))
 			}
 		})
 	}

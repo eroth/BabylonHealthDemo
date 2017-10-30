@@ -9,6 +9,8 @@
 import Foundation
 import FirebaseDatabase
 
+typealias DatabaseWriteCompletionBlock = (ResponseType<Bool>) -> Void
+
 enum APIDatabaseError: LocalizedError {
 	case conversionError
 	case databaseWriteError
@@ -33,25 +35,25 @@ struct BabylonHealthDatabaseAPI {
 		self.databaseService = databaseService
 	}
 	
-	func readPosts(successCompletion: @escaping PostsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+	func readPosts(completion: @escaping PostsCompletionBlock) -> Void {
 		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-		
-		databaseService.read(configuration: dbConfig, successCompletion: { response in
-			let snapshot = response as! DataSnapshot
-			do {
-				let postsDataArray = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
-				let posts = try JSONDecoder().decode([Post].self, from: postsDataArray)
-				successCompletion(posts)
-			} catch {
-				failureCompletion(APIDatabaseError.conversionError)
+		databaseService.read(configuration: dbConfig, completion: { response in
+			switch response {
+			case .success(let result):
+				guard
+					let postsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let posts = try? JSONDecoder().decode([Post].self, from: postsDataArray) else {
+						completion(ResponseType.failure(APIDatabaseError.conversionError))
+						return
+				}
+				completion(ResponseType.success(posts))
+			case .failure(let error):
+				completion(ResponseType.failure(error))
 			}
-
-		}, failureCompletion: { error in
-			failureCompletion(APIDatabaseError.databaseReadError)
 		})
 	}
 	
-	func readPostDetails(userId: Int, postId: Int, successCompletion: @escaping PostDetailsCompletionBlock, failureCompletion: @escaping FailureCompletionBlock) {
+	func readPostDetails(userId: Int, postId: Int, completion: @escaping PostDetailsCompletionBlock) -> Void {
 		let userIdString = String(describing: userId)
 		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
 		var user: User?
@@ -60,19 +62,20 @@ struct BabylonHealthDatabaseAPI {
 		let dispatchGroup = DispatchGroup()
 		
 		dispatchGroup.enter()
-		databaseService.read(configuration: userDbConfig, successCompletion: { response in
-			let snapshot = response as! DataSnapshot
-			do {
-				let userDataDict = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
-				let tempUser = try JSONDecoder().decode(User.self, from: userDataDict)
+		databaseService.read(configuration: userDbConfig, completion: { userResponse in
+			switch userResponse {
+			case .success(let result):
+				guard
+					let userDataDict = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let tempUser = try? JSONDecoder().decode(User.self, from: userDataDict)
+				else {
+					responseError = APIDatabaseError.conversionError
+					return
+				}
 				user = tempUser
-				dispatchGroup.leave()
-			} catch {
-				responseError = APIDatabaseError.conversionError
-				dispatchGroup.leave()
+			case .failure(let error):
+				responseError = error
 			}
-		}, failureCompletion: { error in
-			responseError = APIDatabaseError.databaseReadError
 			dispatchGroup.leave()
 		})
 		
@@ -80,75 +83,86 @@ struct BabylonHealthDatabaseAPI {
 		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: postIdString)
 		
 		dispatchGroup.enter()
-		databaseService.read(configuration: postDbConfig, successCompletion: { response in
-			let snapshot = response as! DataSnapshot
-			do {
-				let commentsDataArray = try JSONSerialization.data(withJSONObject: snapshot.value!, options: [])
-				let commentsArray = try JSONDecoder().decode([Comment].self, from: commentsDataArray)
+		databaseService.read(configuration: postDbConfig, completion: { commentsResponse in
+			switch commentsResponse {
+			case .success(let result):
+				guard
+					let commentsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let commentsArray = try? JSONDecoder().decode([Comment].self, from: commentsDataArray)
+				else {
+					responseError = APIDatabaseError.conversionError
+					return
+				}
 				comments = commentsArray
-				dispatchGroup.leave()
-			} catch {
-				responseError = APIDatabaseError.conversionError
-				dispatchGroup.leave()
+			case .failure(let error):
+				responseError = error
 			}
-		}, failureCompletion: { error in
-			responseError = APIDatabaseError.databaseReadError
 			dispatchGroup.leave()
 		})
 		
 		dispatchGroup.notify(queue: .main, execute: {
-			guard let user = user else {
-				failureCompletion(responseError!)
+			guard
+				let user = user,
+				let comments = comments
+			else {
+				completion(ResponseType.failure(responseError!))
 				return
 			}
-			guard let comments = comments else {
-				failureCompletion(responseError!)
-				return
+			completion(ResponseType.success((user, comments)))
+		})
+	}
+	
+	func writePosts(posts: [Post], completion: (DatabaseWriteCompletionBlock)? = nil) -> Void {
+		guard let array = try? posts.asArray() else {
+			completion?(ResponseType.failure(APIDatabaseError.conversionError))
+			return
+		}
+		
+		let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
+		databaseService.create(configuration: dbConfig, object: array, completion: { response in
+			switch response {
+			case .success:
+				completion?(ResponseType.success(true))
+			case .failure(let error):
+				completion?(ResponseType.failure(error))
 			}
-			successCompletion(user, comments)
+		})
+	}
+	
+	func writePostDetails(user: User, comments: [Comment], completion: (DatabaseWriteCompletionBlock)? = nil) -> Void {
+		let userIdString = String(describing: user.userId)
+		guard let userDict = try? user.asDictionary() else {
+			completion?(ResponseType.failure(APIDatabaseError.conversionError))
+			return
+		}
+		
+		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
+		databaseService.create(configuration: userDbConfig, object: userDict, completion: { response in
+			switch response {
+			case .success:
+				completion?(ResponseType.success(true))
+			case .failure(let error):
+				completion?(ResponseType.failure(error))
+			}
 		})
 		
-	}
-	
-	func writePosts(posts: [Post], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
-		do {
-			let array = try posts.asArray()
-			let dbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_POSTS_PATH)
-			self.databaseService.create(configuration: dbConfig, object: array, successCompletion: {
-				
-			}, failureCompletion: { error in
-				failureCompletion(APIDatabaseError.databaseWriteError)
-			})
-		} catch {
-			failureCompletion(APIDatabaseError.conversionError)
+		guard
+			let firstComment = comments.first,
+			let commentsArray = try? comments.asArray()
+		else {
+			completion?(ResponseType.failure(APIDatabaseError.conversionError))
+			return
 		}
-	}
-	
-	func writePostDetails(user: User, comments: [Comment], successCompletion: @escaping () -> Void, failureCompletion: @escaping FailureCompletionBlock) {
-		do {
-			let userIdString = String(describing: user.userId)
-			let userDict = try user.asDictionary()
-			let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
-			
-			databaseService.create(configuration: userDbConfig, object: userDict, successCompletion: {
-
-			}, failureCompletion: { error in
-
-			})
-			
-			if let firstComment = comments.first {
-				let commentIdString = String(describing: firstComment.postId)
-				let commentsArray = try comments.asArray()
-				let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentIdString)
-				
-				databaseService.create(configuration: commentsDbConfig, object: commentsArray, successCompletion: {
-					
-				}, failureCompletion: { error in
-					
-				})
+		
+		let commentIdString = String(describing: firstComment.postId)
+		let commentsDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: commentIdString)
+		databaseService.create(configuration: commentsDbConfig, object: commentsArray, completion: { response in
+			switch response {
+			case .success:
+				completion?(ResponseType.success(true))
+			case .failure(let error):
+				completion?(ResponseType.failure(error))
 			}
-		} catch {
-			
-		}
+		})
 	}
 }
