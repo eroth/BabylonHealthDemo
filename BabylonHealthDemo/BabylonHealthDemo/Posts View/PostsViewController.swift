@@ -21,14 +21,19 @@ class PostsViewController: UIViewController {
 		SVProgressHUD.show()
 		let dataManager = DataManager()
 		dataManager.retrieveAllPosts(completion: { response in
-			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: nil)
-			switch response {
-			case .success(let posts):
-				self.postsTableViewObject.postsDataSource = posts
-			case .failure(let error):
-				// TODO need to show alert
-				print("here")
-			}
+			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: {
+				switch response {
+				case .success(let posts):
+					self.postsTableViewObject.postsDataSource = posts
+				case .failure(let error):
+					let alert = UIAlertController(title: Constants.Alerts.ERROR_TITLE, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+					let okAction = UIAlertAction(title: Constants.Alerts.OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: { alertAction in
+						self.dismiss(animated: true, completion: nil)
+					})
+					alert.addAction(okAction)
+					self.present(alert, animated: true, completion: nil)
+				}
+			})
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
@@ -40,9 +45,13 @@ class PostsViewController: UIViewController {
 						let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
 						let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
 						self.navigationController?.pushViewController(postDetailsVC, animated: true)
-					case .failure:
-						// TODO need to handle error
-						print("here")
+					case .failure(let error):
+						let alert = UIAlertController(title: Constants.Alerts.ERROR_TITLE, message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+						let okAction = UIAlertAction(title: Constants.Alerts.OK_ACTION_TITLE, style: UIAlertActionStyle.default, handler: { alertAction in
+							self.dismiss(animated: true, completion: nil)
+						})
+						alert.addAction(okAction)
+						self.present(alert, animated: true, completion: nil)
 					}
 				})
 			})

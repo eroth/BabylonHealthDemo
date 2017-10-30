@@ -8,6 +8,20 @@
 
 import Foundation
 
+enum DataError: LocalizedError {
+	case unableToReadAllPostsData
+	case unableToReadPostDetailsData
+	
+	var errorDescription: String? {
+		switch self {
+		case .unableToReadAllPostsData:
+			return "We were unable to retrieve your posts. If this is your first time using the app, the posts must first be loaded using an active network connection."
+		case .unableToReadPostDetailsData:
+			return "We were unable to load post details. If you are offline, the item may not have been stored yet. Please retry with an active network connection."
+		}
+	}
+}
+
 struct DataManager {
 	let networkingAPI = BabylonHealthNetworkingAPI()
 	let databaseAPI = BabylonHealthDatabaseAPI()
@@ -23,8 +37,8 @@ struct DataManager {
 					switch databaseResponse {
 					case .success(let posts):
 						completion(ResponseType.success(posts))
-					case .failure(let error):
-						completion(ResponseType.failure(error))
+					case .failure:
+						completion(ResponseType.failure(DataError.unableToReadAllPostsData))
 					}
 				})
 			}
@@ -42,8 +56,8 @@ struct DataManager {
 					switch databaseResponse {
 					case .success(let user, let comments):
 						completion(ResponseType.success((user, comments)))
-					case .failure(let error):
-						completion(ResponseType.failure(error))
+					case .failure:
+						completion(ResponseType.failure(DataError.unableToReadPostDetailsData))
 					}
 				})
 			}

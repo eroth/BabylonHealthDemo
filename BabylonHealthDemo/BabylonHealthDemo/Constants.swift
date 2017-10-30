@@ -33,4 +33,9 @@ struct Constants {
 	struct HUD {
 		static let DISMISS_TIME: TimeInterval = 0.3
 	}
+	
+	struct Alerts {
+		static let ERROR_TITLE = "Error"
+		static let OK_ACTION_TITLE = "OK"
+	}
 }
