@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class PostsViewController: UIViewController {
 	@IBOutlet var postsTableViewObject: PostsTableViewObject!
+	var viewModel: PostDetailsViewModel?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
+		SVProgressHUD.show()
 		let dataManager = DataManager()
 		dataManager.retrieveAllPosts(completion: { response in
+			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: nil)
 			switch response {
 			case .success(let posts):
 				self.postsTableViewObject.postsDataSource = posts
@@ -27,16 +32,19 @@ class PostsViewController: UIViewController {
 		})
 		
 		postsTableViewObject.didSelectCellClosure = { post in
+			SVProgressHUD.show()
 			dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, completion: { response in
-				switch response {
-				case .success(let user, let comments):
-					let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
-					let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
-					self.navigationController?.pushViewController(postDetailsVC, animated: true)
-				case .failure:
-					// TODO need to handle error
-					print("here")
-				}
+				SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: {
+					switch response {
+					case .success(let user, let comments):
+						let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
+						let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
+						self.navigationController?.pushViewController(postDetailsVC, animated: true)
+					case .failure:
+						// TODO need to handle error
+						print("here")
+					}
+				})
 			})
 		}
 	}

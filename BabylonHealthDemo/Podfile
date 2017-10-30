@@ -7,6 +7,7 @@ target 'BabylonHealthDemo' do
 
   # Pods for BabylonHealthDemo
   pod 'Firebase/Database'
+  pod 'SVProgressHUD'
 
   target 'BabylonHealthDemoTests' do
     inherit! :search_paths
