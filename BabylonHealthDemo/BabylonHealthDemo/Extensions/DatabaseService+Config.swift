@@ -9,9 +9,11 @@
 import Foundation
 
 extension DatabaseService {
-	func create(configuration: DatabaseConfiguration = DatabaseConfiguration()) {}
+	func create<T: Collection>(configuration: DatabaseConfiguration = DatabaseConfiguration(), object: T, completion: @escaping DatabaseCompletionHandler) -> Void {
+		create(configuration: configuration, object: object, completion: completion)
+	}
 	
-	func read(configuration: DatabaseConfiguration = DatabaseConfiguration(), params: ParamsDict? = nil, successCompletion: @escaping (Any) -> Void, failureCompletion: @escaping (Error) -> Void) {
-		read(configuration: configuration, params: params, successCompletion: successCompletion, failureCompletion: failureCompletion)
+	func read(configuration: DatabaseConfiguration = DatabaseConfiguration(), params: ParamsDict? = nil, completion: @escaping DatabaseCompletionHandler) -> Void {
+		read(configuration: configuration, params: params, completion: completion)
 	}
 }
