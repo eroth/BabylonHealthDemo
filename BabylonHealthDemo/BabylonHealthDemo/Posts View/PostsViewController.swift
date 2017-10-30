@@ -10,9 +10,6 @@ import UIKit
 
 class PostsViewController: UIViewController {
 	@IBOutlet var postsTableViewObject: PostsTableViewObject!
-	var selectedPostUser: PostDetailsAuthorDisplayable?
-	var selectedPost: PostDetailsContentDisplayable?
-	var selectedPostComments: [Comment]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -27,37 +24,12 @@ class PostsViewController: UIViewController {
 		
 		postsTableViewObject.didSelectCellClosure = { post in
 			dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, successCompletion: { user, comments in
-				self.selectedPost = post
-				self.selectedPostUser = user
-				self.selectedPostComments = comments
-				self.performSegue(withIdentifier: Constants.MainPostsView.PUSH_DETAILS_VIEW_SEGUE_IDENTIFIER, sender: self)
+				let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
+				let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
+				self.navigationController?.pushViewController(postDetailsVC, animated: true)
 			}, failureCompletion: { error in
 
 			})
 		}
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if let postDetailsVC = segue.destination as? PostDetailsViewController {
-			postDetailsVC.delegate = self
-		}
-	}
-}
-
-extension PostsViewController: PostDetailsViewDelegate {
-	func postAuthorData() -> PostDetailsAuthorDisplayable? {
-		return self.selectedPostUser
-	}
-	
-	func postData() -> PostDetailsContentDisplayable? {
-		return self.selectedPost
-	}
-	
-	func numPostComments() -> Int {
-		guard let numPostComments = selectedPostComments?.count else {
-			return 0
-		}
-		
-		return numPostComments
 	}
 }
