@@ -33,6 +33,8 @@
 		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
 		56B41B551FA0C49B004358F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B541FA0C49B004358F1 /* User.swift */; };
 		56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B561FA0C4AC004358F1 /* Comment.swift */; };
+		56DC08671FA75E5200DF686A /* PostDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DC08661FA75E5200DF686A /* PostDetailsViewController.xib */; };
+		56DC08691FA75F5500DF686A /* PostDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DC08681FA75F5500DF686A /* PostDetailsViewModel.swift */; };
 		56ED6EE11FA36FE100D8F586 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE01FA36FE100D8F586 /* DataManager.swift */; };
 		56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE21FA371C200D8F586 /* DatabaseService.swift */; };
 		56ED6EE51FA3974300D8F586 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE41FA3974300D8F586 /* NetworkingService.swift */; };
@@ -81,6 +83,8 @@
 		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		56B41B541FA0C49B004358F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		56B41B561FA0C4AC004358F1 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		56DC08661FA75E5200DF686A /* PostDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailsViewController.xib; sourceTree = "<group>"; };
+		56DC08681FA75F5500DF686A /* PostDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewModel.swift; sourceTree = "<group>"; };
 		56ED6EE01FA36FE100D8F586 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		56ED6EE21FA371C200D8F586 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		56ED6EE41FA3974300D8F586 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				56A02C471FA1CF0A0040D3FC /* PostDetailsViewController.swift */,
+				56DC08661FA75E5200DF686A /* PostDetailsViewController.xib */,
+				56DC08681FA75F5500DF686A /* PostDetailsViewModel.swift */,
 			);
 			path = "Post Details View";
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				56131E271FA486AC00B9CB01 /* GoogleService-Info.plist in Resources */,
 				56A152FB1F9DEF100021E021 /* Main.storyboard in Resources */,
 				56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */,
+				56DC08671FA75E5200DF686A /* PostDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,12 +439,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-BabylonHealthDemo/Pods-BabylonHealthDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -499,6 +508,7 @@
 				56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */,
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
+				56DC08691FA75F5500DF686A /* PostDetailsViewModel.swift in Sources */,
 				565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
 				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,

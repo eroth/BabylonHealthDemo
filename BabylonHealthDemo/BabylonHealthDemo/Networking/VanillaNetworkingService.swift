@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum ResponseType<T> {
+	case success(T)
+	case failure(Error)
+}
+
 struct Payload: CustomStringConvertible {
 	let data: Data
 	
@@ -23,7 +28,7 @@ struct Payload: CustomStringConvertible {
 	}
 }
 
-enum CustomError: LocalizedError {
+enum NetworkingServiceError: LocalizedError {
 	case noDataReceived
 	case urlError
 	
@@ -39,10 +44,11 @@ enum CustomError: LocalizedError {
 
 struct VanillaNetworkingService : NetworkingService {
 	@discardableResult
-	func performRequest(route: String, queryParams: [String : String]?, successCompletion: @escaping (Payload) -> Void, failureCompletion: @escaping (Error) -> Void) -> URLSessionDataTask? {
+	func performRequest(route: String, queryParams: [String : String]?, completion: @escaping NetworkingCompletionHandler) -> URLSessionDataTask? {
 		guard let url = URLConfig(path: route, queryComponents: queryParams).url else {
-			failureCompletion(CustomError.urlError)
-			
+			DispatchQueue.main.async {
+				completion(ResponseType.failure(NetworkingServiceError.urlError))
+			}
 			return nil
 		}
 
@@ -50,18 +56,20 @@ struct VanillaNetworkingService : NetworkingService {
 		let dataTask = URLSession.shared.dataTask(with: request) { (data, URLResponse, error) in
 			if let e = error {
 				DispatchQueue.main.async {
-					failureCompletion(e)
+					completion(ResponseType.failure(e))
 				}
 				return
 			}
 			
 			guard let payload = Payload(data: data) else {
 				DispatchQueue.main.async {
-					failureCompletion(CustomError.noDataReceived)
+					completion(ResponseType.failure(NetworkingServiceError.noDataReceived))
 				}
 				return
 			}
-			successCompletion(payload)
+			DispatchQueue.main.async {
+				completion(ResponseType.success(payload))
+			}
 		}
 		dataTask.resume()
 		
