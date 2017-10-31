@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum ResponseType<T> {
 	case success(T)
@@ -46,28 +47,23 @@ struct VanillaNetworkingService : NetworkingService {
 	@discardableResult
 	func performRequest(route: String, queryParams: [String : String]?, completion: @escaping NetworkingCompletionHandler) -> URLSessionDataTask? {
 		guard let url = URLConfig(path: route, queryComponents: queryParams).url else {
-			DispatchQueue.main.async {
-				completion(ResponseType.failure(NetworkingServiceError.urlError))
-			}
+			completion(ResponseType.failure(NetworkingServiceError.urlError))
 			return nil
 		}
-
+		
+		UIApplication.shared.isNetworkActivityIndicatorVisible = true
 		let request = URLRequest.defaultRequest(url: url)
 		let dataTask = URLSession.shared.dataTask(with: request) { (data, URLResponse, error) in
-			if let e = error {
-				DispatchQueue.main.async {
-					completion(ResponseType.failure(e))
-				}
-				return
-			}
-			
-			guard let payload = Payload(data: data) else {
-				DispatchQueue.main.async {
-					completion(ResponseType.failure(NetworkingServiceError.noDataReceived))
-				}
-				return
-			}
 			DispatchQueue.main.async {
+				UIApplication.shared.isNetworkActivityIndicatorVisible = false
+				if let e = error {
+					completion(ResponseType.failure(e))
+					return
+				}
+				guard let payload = Payload(data: data) else {
+					completion(ResponseType.failure(NetworkingServiceError.noDataReceived))
+					return
+				}
 				completion(ResponseType.success(payload))
 			}
 		}

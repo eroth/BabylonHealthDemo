@@ -16,7 +16,7 @@ extension URLRequest {
 	static func defaultRequest(url: URL) -> URLRequest {
 		var request = URLRequest(url: url)
 		request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringCacheData
-		request.timeoutInterval = 30
+		request.timeoutInterval = Constants.Networking.REQUEST_TIMEOUT_INTERVAL
 		request.httpMethod = HTTPMethod.get.rawValue
 		
 		return request
