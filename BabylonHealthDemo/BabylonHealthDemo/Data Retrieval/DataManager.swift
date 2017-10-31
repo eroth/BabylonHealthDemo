@@ -15,9 +15,9 @@ enum DataError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
 		case .unableToReadAllPostsData:
-			return "We were unable to retrieve your posts. If this is your first time using the app, the posts must first be loaded using an active network connection."
+			return "We were unable to retrieve your posts. If this is your first time using the app, the posts must first be downloaded using an active network connection."
 		case .unableToReadPostDetailsData:
-			return "We were unable to load post details. If you are offline, the item may not have been stored yet. Please retry with an active network connection."
+			return "We were unable to load post details. If you are offline, the item may not have been downloaded yet. Please retry with an active network connection."
 		}
 	}
 }

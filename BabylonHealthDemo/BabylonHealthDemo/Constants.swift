@@ -15,6 +15,7 @@ struct Constants {
 		static let POSTS_ROUTE = "/posts"
 		static let USERS_ROUTE = "/users"
 		static let COMMENTS_ROUTE = "/comments"
+		static let REQUEST_TIMEOUT_INTERVAL = TimeInterval(exactly: 3)! // Only for the purposes of this demo app
 	}
 	
 	struct MainPostsView {
