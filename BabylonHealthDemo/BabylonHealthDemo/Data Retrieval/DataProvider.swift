@@ -1,5 +1,5 @@
 //
-//  DataManager.swift
+//  DataProvider.swift
 //  BabylonHealthDemo
 //
 //  Created by Evan Roth on 10/27/17.
@@ -22,7 +22,7 @@ enum DataError: LocalizedError {
 	}
 }
 
-struct DataManager {
+struct DataProvider {
 	let networkingAPI = BabylonHealthNetworkingAPI()
 	let databaseAPI = BabylonHealthDatabaseAPI()
 	

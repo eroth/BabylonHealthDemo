@@ -13,8 +13,6 @@
 		56131E291FA4991D00B9CB01 /* Encodable+Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E281FA4991D00B9CB01 /* Encodable+Collections.swift */; };
 		56131E2B1FA4A1D600B9CB01 /* DatabaseConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */; };
 		56131E2D1FA4A22B00B9CB01 /* DatabaseService+Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56131E2C1FA4A22B00B9CB01 /* DatabaseService+Config.swift */; };
-		565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */; };
-		565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */; };
 		569591111F9F29B900C0AE99 /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591101F9F29B900C0AE99 /* URLConfig.swift */; };
 		569591131F9F2AC100C0AE99 /* VanillaNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */; };
 		569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */; };
@@ -28,7 +26,7 @@
 		56A152FD1F9DEF100021E021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56A152FC1F9DEF100021E021 /* Assets.xcassets */; };
 		56A153001F9DEF100021E021 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */; };
 		56A1530B1F9DEF100021E021 /* BabylonHealthDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */; };
-		56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */; };
+		56B41B4F1F9FF7D9004358F1 /* PostsTableViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B4E1F9FF7D9004358F1 /* PostsTableViewProvider.swift */; };
 		56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */; };
 		56B41B531FA07F62004358F1 /* PostsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */; };
 		56B41B551FA0C49B004358F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B41B541FA0C49B004358F1 /* User.swift */; };
@@ -36,7 +34,7 @@
 		56DC08671FA75E5200DF686A /* PostDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56DC08661FA75E5200DF686A /* PostDetailsViewController.xib */; };
 		56DC08691FA75F5500DF686A /* PostDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DC08681FA75F5500DF686A /* PostDetailsViewModel.swift */; };
 		56DC086B1FA7E9FA00DF686A /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56DC086A1FA7E9FA00DF686A /* UIViewController+Alert.swift */; };
-		56ED6EE11FA36FE100D8F586 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE01FA36FE100D8F586 /* DataManager.swift */; };
+		56ED6EE11FA36FE100D8F586 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE01FA36FE100D8F586 /* DataProvider.swift */; };
 		56ED6EE31FA371C200D8F586 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE21FA371C200D8F586 /* DatabaseService.swift */; };
 		56ED6EE51FA3974300D8F586 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE41FA3974300D8F586 /* NetworkingService.swift */; };
 		56ED6EE81FA397C700D8F586 /* FirebaseDatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */; };
@@ -60,8 +58,6 @@
 		56131E281FA4991D00B9CB01 /* Encodable+Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Collections.swift"; sourceTree = "<group>"; };
 		56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseConfiguration.swift; sourceTree = "<group>"; };
 		56131E2C1FA4A22B00B9CB01 /* DatabaseService+Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DatabaseService+Config.swift"; sourceTree = "<group>"; };
-		565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsContentDisplayable.swift; sourceTree = "<group>"; };
-		565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsAuthorDisplayable.swift; sourceTree = "<group>"; };
 		569591101F9F29B900C0AE99 /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
 		569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanillaNetworkingService.swift; sourceTree = "<group>"; };
 		569591151F9F2B7200C0AE99 /* URLRequest+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Default.swift"; sourceTree = "<group>"; };
@@ -79,7 +75,7 @@
 		56A153061F9DEF100021E021 /* BabylonHealthDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabylonHealthDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56A1530A1F9DEF100021E021 /* BabylonHealthDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabylonHealthDemoTests.swift; sourceTree = "<group>"; };
 		56A1530C1F9DEF100021E021 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewObject.swift; sourceTree = "<group>"; };
+		56B41B4E1F9FF7D9004358F1 /* PostsTableViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewProvider.swift; sourceTree = "<group>"; };
 		56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsTableViewCell.xib; sourceTree = "<group>"; };
 		56B41B541FA0C49B004358F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -87,7 +83,7 @@
 		56DC08661FA75E5200DF686A /* PostDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailsViewController.xib; sourceTree = "<group>"; };
 		56DC08681FA75F5500DF686A /* PostDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewModel.swift; sourceTree = "<group>"; };
 		56DC086A1FA7E9FA00DF686A /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
-		56ED6EE01FA36FE100D8F586 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		56ED6EE01FA36FE100D8F586 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		56ED6EE21FA371C200D8F586 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		56ED6EE41FA3974300D8F586 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseDatabaseService.swift; sourceTree = "<group>"; };
@@ -118,21 +114,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		565B19E11FA2255400D042E5 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				565B19E41FA225CF00D042E5 /* PostDetailsContentDisplayable.swift */,
-				565B19E61FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift */,
-				56ED6EE21FA371C200D8F586 /* DatabaseService.swift */,
-				56ED6EE41FA3974300D8F586 /* NetworkingService.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
 		5695910F1F9F29A200C0AE99 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				569591101F9F29B900C0AE99 /* URLConfig.swift */,
+				56ED6EE41FA3974300D8F586 /* NetworkingService.swift */,
 				569591121F9F2AC100C0AE99 /* VanillaNetworkingService.swift */,
 			);
 			path = Networking;
@@ -168,6 +154,17 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5696AEC41FA9FD3E0035CD19 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				56E65A031F9FEE1600A43A3D /* Posts View */,
+				56A02C461FA1CEE20040D3FC /* Post Details View */,
+				56A152F91F9DEF100021E021 /* Main.storyboard */,
+				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		56A02C461FA1CEE20040D3FC /* Post Details View */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,22 +198,18 @@
 		56A152F41F9DEF100021E021 /* BabylonHealthDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5696AEC41FA9FD3E0035CD19 /* UI */,
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
-				56E65A031F9FEE1600A43A3D /* Posts View */,
-				56A02C461FA1CEE20040D3FC /* Post Details View */,
+				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
+				569591191F9F2DA200C0AE99 /* API */,
 				56ED6EDF1FA36FB200D8F586 /* Data Retrieval */,
 				56ED6EE61FA3977F00D8F586 /* Database */,
-				569591191F9F2DA200C0AE99 /* API */,
-				569591141F9F2B5E00C0AE99 /* Extensions */,
-				565B19E11FA2255400D042E5 /* Protocols */,
 				5695910F1F9F29A200C0AE99 /* Networking */,
-				56A152F91F9DEF100021E021 /* Main.storyboard */,
+				569591141F9F2B5E00C0AE99 /* Extensions */,
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
-				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 				56A153011F9DEF100021E021 /* Info.plist */,
 				56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */,
-				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 			);
 			path = BabylonHealthDemo;
 			sourceTree = "<group>";
@@ -234,7 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				56A152F71F9DEF100021E021 /* PostsViewController.swift */,
-				56B41B4E1F9FF7D9004358F1 /* PostsTableViewObject.swift */,
+				56B41B4E1F9FF7D9004358F1 /* PostsTableViewProvider.swift */,
 				56B41B501FA07F62004358F1 /* PostsTableViewCell.swift */,
 				56B41B511FA07F62004358F1 /* PostsTableViewCell.xib */,
 			);
@@ -244,7 +237,7 @@
 		56ED6EDF1FA36FB200D8F586 /* Data Retrieval */ = {
 			isa = PBXGroup;
 			children = (
-				56ED6EE01FA36FE100D8F586 /* DataManager.swift */,
+				56ED6EE01FA36FE100D8F586 /* DataProvider.swift */,
 			);
 			path = "Data Retrieval";
 			sourceTree = "<group>";
@@ -252,6 +245,7 @@
 		56ED6EE61FA3977F00D8F586 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				56ED6EE21FA371C200D8F586 /* DatabaseService.swift */,
 				56ED6EE71FA397C700D8F586 /* FirebaseDatabaseService.swift */,
 				56131E2A1FA4A1D600B9CB01 /* DatabaseConfiguration.swift */,
 			);
@@ -498,13 +492,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56B41B4F1F9FF7D9004358F1 /* PostsTableViewObject.swift in Sources */,
-				56ED6EE11FA36FE100D8F586 /* DataManager.swift in Sources */,
+				56B41B4F1F9FF7D9004358F1 /* PostsTableViewProvider.swift in Sources */,
+				56ED6EE11FA36FE100D8F586 /* DataProvider.swift in Sources */,
 				5695911B1F9F2DBB00C0AE99 /* BabylonHealthNetworkingAPI.swift in Sources */,
 				56131E251FA479BC00B9CB01 /* BabylonHealthDatabaseAPI.swift in Sources */,
 				56ED6EE51FA3974300D8F586 /* NetworkingService.swift in Sources */,
 				56DC086B1FA7E9FA00DF686A /* UIViewController+Alert.swift in Sources */,
-				565B19E51FA225CF00D042E5 /* PostDetailsContentDisplayable.swift in Sources */,
 				56A152F81F9DEF100021E021 /* PostsViewController.swift in Sources */,
 				56A02C481FA1CF0A0040D3FC /* PostDetailsViewController.swift in Sources */,
 				56131E2B1FA4A1D600B9CB01 /* DatabaseConfiguration.swift in Sources */,
@@ -513,7 +506,6 @@
 				5695911E1F9F2EF500C0AE99 /* Post.swift in Sources */,
 				569591161F9F2B7200C0AE99 /* URLRequest+Default.swift in Sources */,
 				56DC08691FA75F5500DF686A /* PostDetailsViewModel.swift in Sources */,
-				565B19E71FA2387F00D042E5 /* PostDetailsAuthorDisplayable.swift in Sources */,
 				56A152F61F9DEF100021E021 /* AppDelegate.swift in Sources */,
 				56B41B571FA0C4AC004358F1 /* Comment.swift in Sources */,
 				56B41B521FA07F62004358F1 /* PostsTableViewCell.swift in Sources */,

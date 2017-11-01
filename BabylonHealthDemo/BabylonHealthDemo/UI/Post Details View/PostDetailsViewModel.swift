@@ -9,7 +9,13 @@
 import Foundation
 
 struct PostDetailsViewModel {
-	let postDetailsData: PostDetailsContentDisplayable
-	let postAuthor: PostDetailsAuthorDisplayable
+	let postAuthor: String
+	let postBody: String
 	let postNumComments: Int
+	
+	init(post: Post, user: User, postComments: [Comment]) {
+		postAuthor = user.name
+		postBody = post.body
+		postNumComments = postComments.count
+	}
 }
