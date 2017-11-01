@@ -13,9 +13,9 @@ struct PostDetailsViewModel {
 	let postBody: String
 	let postNumComments: Int
 	
-	init(post: Post, user: User, postComments: [Comment]) {
-		postAuthor = user.name
+	init(post: Post, postDetails: PostDetails) {
+		postAuthor = postDetails.user.name
 		postBody = post.body
-		postNumComments = postComments.count
+		postNumComments = postDetails.comments.count
 	}
 }

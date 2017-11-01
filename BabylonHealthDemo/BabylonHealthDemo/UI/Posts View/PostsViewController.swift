@@ -18,6 +18,13 @@ class PostsViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		displayPosts()
+		postsTableViewObject.didSelectCellClosure = { post in
+			self.didSelectPostCell(post: post)
+		}
+	}
+	
+	func displayPosts() -> Void {
 		SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.dark)
 		SVProgressHUD.show()
 		dataManager.retrieveAllPosts(completion: { response in
@@ -30,10 +37,6 @@ class PostsViewController: UIViewController {
 				}
 			})
 		})
-		
-		postsTableViewObject.didSelectCellClosure = { post in
-			self.didSelectPostCell(post: post)
-		}
 	}
 	
 	func didSelectPostCell(post: Post) -> Void {
@@ -41,8 +44,8 @@ class PostsViewController: UIViewController {
 		dataManager.retrievePostDetails(userId: post.userId, postId: post.postId, completion: { response in
 			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: {
 				switch response {
-				case .success(let user, let comments):
-					let postDetailsViewModel = PostDetailsViewModel(post: post, user: user, postComments: comments)
+				case .success(let postDetails):
+					let postDetailsViewModel = PostDetailsViewModel(post: post, postDetails: postDetails)
 					let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
 					self.navigationController?.pushViewController(postDetailsVC, animated: true)
 				case .failure(let error):
