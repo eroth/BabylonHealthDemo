@@ -48,14 +48,14 @@ struct DataProvider {
 	func retrievePostDetails(userId: Int, postId: Int, completion: @escaping PostDetailsCompletionBlock) {
 		self.networkingAPI.loadPostDetails(userId: userId, postId: postId, completion: { networkResponse in
 			switch networkResponse {
-			case .success(let user, let comments):
-				completion(ResponseType.success((user, comments)))
-				self.databaseAPI.writePostDetails(user: user, comments: comments)
+			case .success(let postDetails):
+				completion(ResponseType.success(postDetails))
+				self.databaseAPI.writePostDetails(user: postDetails.user, comments: postDetails.comments)
 			case .failure:
 				self.databaseAPI.readPostDetails(userId: userId, postId: postId, completion: { databaseResponse in
 					switch databaseResponse {
-					case .success(let user, let comments):
-						completion(ResponseType.success((user, comments)))
+					case .success(let postDetails):
+						completion(ResponseType.success(postDetails))
 					case .failure:
 						completion(ResponseType.failure(DataError.unableToReadPostDetailsData))
 					}

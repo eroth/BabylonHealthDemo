@@ -8,8 +8,9 @@
 
 import Foundation
 
+typealias PostDetails = (user: User, comments: [Comment])
 typealias PostsCompletionBlock = (ResponseType<([Post])>) -> Void
-typealias PostDetailsCompletionBlock = (ResponseType<(user: User, comments: [Comment])>) -> Void
+typealias PostDetailsCompletionBlock = (ResponseType<PostDetails>) -> Void
 typealias UserInfoCompletionBlock = (ResponseType<User>) -> Void
 typealias PostCommentsCompletionBlock = (ResponseType<[Comment]>) -> Void
 
