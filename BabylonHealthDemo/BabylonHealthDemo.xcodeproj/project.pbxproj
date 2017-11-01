@@ -159,6 +159,8 @@
 			children = (
 				56E65A031F9FEE1600A43A3D /* Posts View */,
 				56A02C461FA1CEE20040D3FC /* Post Details View */,
+				56A152F91F9DEF100021E021 /* Main.storyboard */,
+				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -197,16 +199,14 @@
 			isa = PBXGroup;
 			children = (
 				5696AEC41FA9FD3E0035CD19 /* UI */,
-				56A152F91F9DEF100021E021 /* Main.storyboard */,
-				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
 				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
+				569591191F9F2DA200C0AE99 /* API */,
 				56ED6EDF1FA36FB200D8F586 /* Data Retrieval */,
 				56ED6EE61FA3977F00D8F586 /* Database */,
-				569591191F9F2DA200C0AE99 /* API */,
-				569591141F9F2B5E00C0AE99 /* Extensions */,
 				5695910F1F9F29A200C0AE99 /* Networking */,
+				569591141F9F2B5E00C0AE99 /* Extensions */,
 				56A152FC1F9DEF100021E021 /* Assets.xcassets */,
 				56A153011F9DEF100021E021 /* Info.plist */,
 				56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */,
