@@ -8,8 +8,9 @@
 
 import Foundation
 
+typealias PostDetails = (user: User, comments: [Comment])
 typealias PostsCompletionBlock = (ResponseType<([Post])>) -> Void
-typealias PostDetailsCompletionBlock = (ResponseType<(user: User, comments: [Comment])>) -> Void
+typealias PostDetailsCompletionBlock = (ResponseType<PostDetails>) -> Void
 typealias UserInfoCompletionBlock = (ResponseType<User>) -> Void
 typealias PostCommentsCompletionBlock = (ResponseType<[Comment]>) -> Void
 
@@ -97,7 +98,7 @@ struct BabylonHealthNetworkingAPI {
 	
 	private func getPostUser(userId: Int, completion: @escaping UserInfoCompletionBlock) -> URLSessionDataTask? {
 		let userIdString = String(describing: userId)
-		let params: [String: String] = ["id": userIdString]
+		let params: [String: String] = [Constants.API.Posts.ID_KEY: userIdString]
 		
 		return networkingService.performRequest(route: Constants.Networking.USERS_ROUTE, queryParams: params, completion: { response in
 			switch response {
@@ -120,7 +121,7 @@ struct BabylonHealthNetworkingAPI {
 	
 	private func getPostComments(postId: Int, completion: @escaping PostCommentsCompletionBlock) -> URLSessionDataTask? {
 		let postIdString = String(describing: postId)
-		let params: [String: String] = ["postId": postIdString]
+		let params: [String: String] = [Constants.API.Comments.POST_ID_KEY: postIdString]
 		
 		return networkingService.performRequest(route: Constants.Networking.COMMENTS_ROUTE, queryParams: params, completion: { response in
 			switch response {

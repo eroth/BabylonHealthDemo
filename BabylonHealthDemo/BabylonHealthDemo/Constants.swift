@@ -15,6 +15,17 @@ struct Constants {
 		static let POSTS_ROUTE = "/posts"
 		static let USERS_ROUTE = "/users"
 		static let COMMENTS_ROUTE = "/comments"
+		static let REQUEST_TIMEOUT_INTERVAL = TimeInterval(exactly: 3)! // Only for the purposes of this demo app
+	}
+	
+	struct API {
+		struct Posts {
+			static let ID_KEY = "id"
+		}
+		
+		struct Comments {
+			static let POST_ID_KEY = "postid"
+		}
 	}
 	
 	struct MainPostsView {
@@ -27,10 +38,15 @@ struct Constants {
 		static let FIREBASE_POSTS_PATH = "posts"
 		static let FIREBASE_USERS_PATH = "users"
 		static let FIREBASE_COMMENTS_PATH = "comments"
-		static let FIREBASE_OPERATION_TIMEOUT = DispatchTimeInterval.seconds(3)
+		static let FIREBASE_OPERATION_TIMEOUT = DispatchTimeInterval.seconds(2)
 	}
 	
 	struct HUD {
 		static let DISMISS_TIME: TimeInterval = 0.3
+	}
+	
+	struct Alerts {
+		static let ERROR_TITLE = "Error"
+		static let OK_ACTION_TITLE = "OK"
 	}
 }
