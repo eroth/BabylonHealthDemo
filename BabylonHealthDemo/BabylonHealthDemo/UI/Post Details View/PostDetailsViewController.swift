@@ -11,12 +11,12 @@ import UIKit
 class PostDetailsViewController: UIViewController {
 	@IBOutlet weak var authorLabel: UILabel! {
 		didSet {
-			authorLabel.text = viewModel.postAuthor.name
+			authorLabel.text = viewModel.postAuthor
 		}
 	}
 	@IBOutlet weak var bodyLabel: UILabel! {
 		didSet {
-			bodyLabel.text = viewModel.postDetailsData.body
+			bodyLabel.text = viewModel.postBody
 		}
 	}
 	

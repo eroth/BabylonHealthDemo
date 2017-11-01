@@ -11,7 +11,7 @@ import UIKit
 
 typealias DidSelectCellClosure = (_ postData: Post) -> Void
 
-class PostsTableViewObject: NSObject {
+class PostsTableViewProvider: NSObject {
 	var postsDataSource: [Post] = [] {
 		didSet {
 			postsTableView.reloadData()
@@ -28,7 +28,7 @@ class PostsTableViewObject: NSObject {
 	var didSelectCellClosure: DidSelectCellClosure?
 }
 
-extension PostsTableViewObject: UITableViewDataSource {
+extension PostsTableViewProvider: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return postsDataSource.count
 	}
@@ -43,7 +43,7 @@ extension PostsTableViewObject: UITableViewDataSource {
 	}
 }
 
-extension PostsTableViewObject: UITableViewDelegate {
+extension PostsTableViewProvider: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return Constants.MainPostsView.MAIN_POSTS_TABLEVIEWCELL_HEIGHT
 	}

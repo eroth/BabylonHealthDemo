@@ -22,7 +22,7 @@ enum DataError: LocalizedError {
 	}
 }
 
-struct DataManager {
+struct DataProvider {
 	let networkingAPI = BabylonHealthNetworkingAPI()
 	let databaseAPI = BabylonHealthDatabaseAPI()
 	

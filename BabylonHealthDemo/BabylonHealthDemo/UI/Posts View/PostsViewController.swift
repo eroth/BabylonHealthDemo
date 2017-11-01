@@ -10,9 +10,9 @@ import UIKit
 import SVProgressHUD
 
 class PostsViewController: UIViewController {
-	@IBOutlet var postsTableViewObject: PostsTableViewObject!
+	@IBOutlet var postsTableViewObject: PostsTableViewProvider!
 	var viewModel: PostDetailsViewModel?
-	let dataManager = DataManager()
+	let dataManager = DataProvider()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -42,7 +42,7 @@ class PostsViewController: UIViewController {
 			SVProgressHUD.dismiss(withDelay: Constants.HUD.DISMISS_TIME, completion: {
 				switch response {
 				case .success(let user, let comments):
-					let postDetailsViewModel = PostDetailsViewModel(postDetailsData: post, postAuthor: user, postNumComments: comments.count)
+					let postDetailsViewModel = PostDetailsViewModel(post: post, user: user, postComments: comments)
 					let postDetailsVC = PostDetailsViewController(viewModel: postDetailsViewModel)
 					self.navigationController?.pushViewController(postDetailsVC, animated: true)
 				case .failure(let error):
