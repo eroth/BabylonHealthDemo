@@ -18,6 +18,16 @@ struct Constants {
 		static let REQUEST_TIMEOUT_INTERVAL = TimeInterval(exactly: 3)! // Only for the purposes of this demo app
 	}
 	
+	struct API {
+		struct Posts {
+			static let ID_KEY = "id"
+		}
+		
+		struct Comments {
+			static let POST_ID_KEY = "postid"
+		}
+	}
+	
 	struct MainPostsView {
 		static let MAIN_POSTS_TABLEVIEWCELL_HEIGHT = CGFloat(130)
 		static let POSTS_TABLEVIEWCELL_REUSE_IDENTIFIER = "PostsTableViewCellReuseIdentifier"
