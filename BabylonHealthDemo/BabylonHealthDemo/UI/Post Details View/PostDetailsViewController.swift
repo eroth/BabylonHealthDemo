@@ -30,6 +30,7 @@ class PostDetailsViewController: UIViewController {
 	init(viewModel: PostDetailsViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
+		self.title = "Post Details"
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
