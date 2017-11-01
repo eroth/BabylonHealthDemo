@@ -202,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				56A152F51F9DEF100021E021 /* AppDelegate.swift */,
+				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 				56E65A031F9FEE1600A43A3D /* Posts View */,
 				56A02C461FA1CEE20040D3FC /* Post Details View */,
 				5695911C1F9F2ED700C0AE99 /* Model */,
@@ -216,7 +217,6 @@
 				56A152FE1F9DEF100021E021 /* LaunchScreen.storyboard */,
 				56A153011F9DEF100021E021 /* Info.plist */,
 				56131E261FA486AC00B9CB01 /* GoogleService-Info.plist */,
-				569591171F9F2BAF00C0AE99 /* Constants.swift */,
 			);
 			path = BabylonHealthDemo;
 			sourceTree = "<group>";
