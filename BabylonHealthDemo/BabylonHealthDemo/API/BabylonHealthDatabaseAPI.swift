@@ -54,46 +54,27 @@ struct BabylonHealthDatabaseAPI {
 	}
 	
 	func readPostDetails(userId: Int, postId: Int, completion: @escaping PostDetailsCompletionBlock) -> Void {
-		let userIdString = String(describing: userId)
-		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
 		var user: User?
 		var comments: [Comment]?
 		var responseError: Error? // Just using one error if there is one
 		let dispatchGroup = DispatchGroup()
 		
 		dispatchGroup.enter()
-		databaseService.read(configuration: userDbConfig, completion: { userResponse in
-			switch userResponse {
-			case .success(let result):
-				guard
-					let userDataDict = try? JSONSerialization.data(withJSONObject: result.data, options: []),
-					let tempUser = try? JSONDecoder().decode(User.self, from: userDataDict)
-				else {
-					responseError = APIDatabaseError.conversionError
-					return
-				}
-				user = tempUser
+		readPostUser(userId: userId, completion: { response in
+			switch response {
+			case .success(let userResponse):
+				user = userResponse
 			case .failure(let error):
 				responseError = error
 			}
 			dispatchGroup.leave()
 		})
 		
-		let postIdString = String(describing: postId)
-		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: postIdString)
-		
 		dispatchGroup.enter()
-		databaseService.read(configuration: postDbConfig, completion: { commentsResponse in
-			switch commentsResponse {
-			case .success(let result):
-				guard
-					let commentsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
-					let commentsArray = try? JSONDecoder().decode([Comment].self, from: commentsDataArray)
-				else {
-					responseError = APIDatabaseError.conversionError
-					return
-				}
-				comments = commentsArray
+		readPostComments(postId: postId, completion: { response in
+			switch response {
+			case .success(let commentsResponse):
+				comments = commentsResponse
 			case .failure(let error):
 				responseError = error
 			}
@@ -109,6 +90,48 @@ struct BabylonHealthDatabaseAPI {
 				return
 			}
 			completion(ResponseType.success((user, comments)))
+		})
+	}
+	
+	private func readPostUser(userId: Int, completion: @escaping UserInfoCompletionBlock) -> Void {
+		let userIdString = String(describing: userId)
+		let userDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_USERS_PATH, childPath: userIdString)
+		
+		databaseService.read(configuration: userDbConfig, completion: { userResponse in
+			switch userResponse {
+			case .success(let result):
+				guard
+					let userDataDict = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let user = try? JSONDecoder().decode(User.self, from: userDataDict)
+					else {
+						completion(ResponseType.failure(APIDatabaseError.conversionError))
+						return
+				}
+				completion(ResponseType.success(user))
+			case .failure(let error):
+				completion(ResponseType.failure(error))
+			}
+		})
+	}
+	
+	private func readPostComments(postId: Int, completion: @escaping PostCommentsCompletionBlock) -> Void {
+		let postIdString = String(describing: postId)
+		let postDbConfig = DatabaseConfiguration(path: Constants.Database.FIREBASE_COMMENTS_PATH, childPath: postIdString)
+
+		databaseService.read(configuration: postDbConfig, completion: { commentsResponse in
+			switch commentsResponse {
+			case .success(let result):
+				guard
+					let commentsDataArray = try? JSONSerialization.data(withJSONObject: result.data, options: []),
+					let commentsArray = try? JSONDecoder().decode([Comment].self, from: commentsDataArray)
+					else {
+						completion(ResponseType.failure(APIDatabaseError.conversionError))
+						return
+				}
+				completion(ResponseType.success(commentsArray))
+			case .failure(let error):
+				completion(ResponseType.failure(error))
+			}
 		})
 	}
 	
