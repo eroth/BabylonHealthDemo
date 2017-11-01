@@ -68,7 +68,9 @@ struct FirebaseDatabaseService: DatabaseService {
 				completion?(ResponseType.failure(APIDatabaseError.databaseReadError))
 			}
 		})
-
+		
+		// Firebase call never returns in case of no network connection and readnode not present in local DB
+		// https://stackoverflow.com/a/42471244/482557
 		DispatchQueue.main.asyncAfter(deadline: .now() + Constants.Database.FIREBASE_OPERATION_TIMEOUT, execute: {
 			if !didTimeout && !didComplete {
 				didTimeout = true

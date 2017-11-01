@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Codable, PostDetailsAuthorDisplayable {
+struct User: Codable {
 	enum CodingKeys: String, CodingKey {
 		case userId = "id"
 		case name

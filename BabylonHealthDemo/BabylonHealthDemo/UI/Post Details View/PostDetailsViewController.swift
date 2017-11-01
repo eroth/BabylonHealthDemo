@@ -9,26 +9,31 @@
 import UIKit
 
 class PostDetailsViewController: UIViewController {
-	@IBOutlet weak var authorLabel: UILabel!
-	@IBOutlet weak var bodyLabel: UILabel!
-	@IBOutlet weak var numCommentsLabel: UILabel!
+	@IBOutlet weak var authorLabel: UILabel! {
+		didSet {
+			authorLabel.text = viewModel.postAuthor
+		}
+	}
+	@IBOutlet weak var bodyLabel: UILabel! {
+		didSet {
+			bodyLabel.text = viewModel.postBody
+		}
+	}
+	
+	@IBOutlet weak var numCommentsLabel: UILabel! {
+		didSet {
+			numCommentsLabel.text = "\(viewModel.postNumComments) comments"
+		}
+	}
 	let viewModel: PostDetailsViewModel
 	
 	init(viewModel: PostDetailsViewModel) {
 		self.viewModel = viewModel
 		super.init(nibName: nil, bundle: nil)
+		self.title = "Post Details"
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
-	}
-	
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-		authorLabel.text = viewModel.postAuthor.name
-		bodyLabel.text = viewModel.postDetailsData.body
-		numCommentsLabel.text = "\(viewModel.postNumComments) comments"
 	}
 }

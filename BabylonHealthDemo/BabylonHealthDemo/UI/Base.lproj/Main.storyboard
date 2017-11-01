@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Posts View Controller-->
+        <!--Babylon Health Demo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PostsViewController" customModule="BabylonHealthDemo" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,13 +36,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="MCp-ef-4mz"/>
+                    <navigationItem key="navigationItem" title="Babylon Health Demo" id="MCp-ef-4mz"/>
                     <connections>
                         <outlet property="postsTableViewObject" destination="a0Y-J5-gy4" id="nTR-JL-2Jt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <customObject id="a0Y-J5-gy4" customClass="PostsTableViewObject" customModule="BabylonHealthDemo" customModuleProvider="target">
+                <customObject id="a0Y-J5-gy4" customClass="PostsTableViewProvider" customModule="BabylonHealthDemo" customModuleProvider="target">
                     <connections>
                         <outlet property="postsTableView" destination="dBh-xO-2wW" id="7bz-dD-5Ac"/>
                     </connections>

@@ -14,10 +14,10 @@ struct URLConfig {
 		case https
 	}
 	
-	var host: String
-	var scheme: String
-	var path: String
-	var queryComponents: [String : String]?
+	let host: String
+	let scheme: String
+	let path: String
+	let queryComponents: [String : String]?
 	
 	init(scheme: HTTPScheme = .http, host: String = Constants.Networking.API_HOST, path: String, queryComponents: [String : String]?) {
 		self.scheme = scheme.rawValue
