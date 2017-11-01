@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import BabylonHealthDemo
 
 class BabylonHealthDemoTests: XCTestCase {
     
