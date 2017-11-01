@@ -1,5 +1,5 @@
 //
-//  DataManager.swift
+//  DataProvider.swift
 //  BabylonHealthDemo
 //
 //  Created by Evan Roth on 10/27/17.

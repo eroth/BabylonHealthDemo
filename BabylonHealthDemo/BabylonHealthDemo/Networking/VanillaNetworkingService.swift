@@ -1,5 +1,5 @@
 //
-//  NetworkingService.swift
+//  VaniallaNetworkingService.swift
 //  BabylonHealthDemo
 //
 //  Created by Evan Roth on 10/24/17.
